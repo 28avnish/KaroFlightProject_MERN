@@ -1,0 +1,59 @@
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import morgan from "morgan";
+import chalk from "chalk";
+import { connectMongo } from "./src/config/db.js";
+import errorHandler from "./src/middlewares/errorHandler.js";
+import dotenv from "dotenv";
+
+const app = express();
+
+const PORT = process.env.PORT || 8000;
+
+dotenv.config();
+
+connectMongo();
+// @@Desc:------MIDDLEWARES------
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan("dev"));
+
+app.use(
+  cors(
+    process.env.NODE_ENV === "development"
+      ? {
+          origin: ["http://localhost:5173", "http://localhost:3000"],
+          credentials: true,
+          methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+          allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+          exposedHeaders: ["*", "Authorization"],
+        }
+      : {
+          origin: ["http://localhost:5173", "http://localhost:3000"],
+          credentials: true,
+          methods: ["GET", "PUT", "POST", "PATCH", "DELETE"],
+          allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+          exposedHeaders: ["*", "Authorization"],
+        }
+  )
+);
+
+//@@Desc:-----------------importing routers---------------
+import adminUserRoutes from "./src/routes/adminUser.js";
+
+// @@Desc:-----------------route section-----------------
+app.use("/api/v1/adminUser", adminUserRoutes);
+
+app.use("/", (req, res) =>
+  res.send("----------WELCOME TO DEMO SERVER OF AVNISH NEGI----------")
+);
+
+app.use(errorHandler); // custom error handler
+
+app.listen(PORT, () =>
+  console.log(
+    chalk.bgMagentaBright(`
+    SERVER STARTED AND RUNNING AT PORT ${PORT}`)
+  )
+);

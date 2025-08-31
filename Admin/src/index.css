@@ -1,0 +1,26 @@
+
+@font-face{
+  font-family: HelveticaNowRegular;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Regular.woff2")
+}  
+
+
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+@theme{
+  --font-helvetica-regular: HelveticaNowRegular , "sans-serif";
+}
+
+/* 
+@layer components {
+  .btn-grad {
+    @apply bg-gradient-to-r from-[#141E30] via-[#243B55] to-[#141E30] text-white px-12 py-4 rounded-lg shadow-lg uppercase text-center transition-all duration-500;
+  }
+
+  .btn-grad:hover {
+    @apply bg-[right_center] text-white;
+  }
+} */
+
+ 

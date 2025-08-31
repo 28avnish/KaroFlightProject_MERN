@@ -1,0 +1,52 @@
+@font-face{
+  font-family: Sage;
+  src: url("/fonts/Sage\ Grotesk.otf")
+}  
+@font-face{
+  font-family: Ponjoung;
+  src: url("/fonts/ponjoung/Ponjoung-Medium.otf")
+}  
+ 
+@font-face{
+  font-family: HelveticaNowThin;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Thin.woff2")
+}  
+@font-face{
+  font-family: HelveticaNowLight;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Light.woff2")
+}  
+@font-face{
+  font-family: HelveticaNowRegular;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Regular.woff2")
+}  
+@font-face{
+  font-family: HelveticaNowMedium;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Medium.woff2")
+}  
+@font-face{
+  font-family: HelveticaNowBold;
+  src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Bold.woff2")
+}  
+
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+@theme{
+  --font-sage: Sage , "sans-serif";
+  --font-ponjoung: Ponjoung , "sans-serif";
+  --font-helvetica-thin: HelveticaNowThin , "sans-serif";
+  --font-helvetica-light: HelveticaNowLight , "sans-serif";
+  --font-helvetica-regular: HelveticaNowRegular , "sans-serif";
+  --font-helvetica-medium: HelveticaNowMedium , "sans-serif";
+  --font-helvetica-bold: HelveticaNowBold , "sans-serif";
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(30%);
+  }
+  100% {
+    transform: translateX(-30%);
+  }
+}
+
