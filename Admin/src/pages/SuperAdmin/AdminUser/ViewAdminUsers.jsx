@@ -42,7 +42,7 @@ const ViewAdminUsers = () => {
 
   return (
     <>
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8 text-sm">
+      <div className="max-w-screen-xl mx-auto text-sm">
         {/* <label
           for="default-search"
           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -183,7 +183,7 @@ const ViewAdminUsers = () => {
                     </td>
 
                     <td className="px-3 whitespace-nowrap">
-                      <button
+                       {item?.roleType === "admin" && (  <button
                         onClick={() => {
                           navigate(`/update-admin`, { state: item });
                         }}
@@ -192,6 +192,7 @@ const ViewAdminUsers = () => {
                       >
                         Edit
                       </button>
+                       )}
                       {item?.roleType === "admin" && (
                         <button
                           onClick={() => {

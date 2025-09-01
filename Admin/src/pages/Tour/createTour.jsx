@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { createTour } from "../../features/action/tour";
 import Select from "react-select";
-import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
+import { MdOutlineInsertPhoto } from "react-icons/md";
 import ReactTextEditor from "../../components/TextEditor/JoditEditor";
 
 import defaultPhoto from "/placeholder.jpg";
@@ -472,7 +472,7 @@ const CreateTour = () => {
                     ))}
                   </div>
                   <label htmlFor="banner_input" className="flex">
-                    <InsertPhotoOutlinedIcon />
+                    <MdOutlineInsertPhoto />
                     <div className="w-full px-2 border rounded-md border-slate-300 ">
                       Click here to upload
                     </div>
@@ -517,7 +517,7 @@ const CreateTour = () => {
                     ))}
                   </div>
                   <label htmlFor="gallery_input" className="flex">
-                    <InsertPhotoOutlinedIcon />
+                    <MdOutlineInsertPhoto />
                     <div className="w-full px-2 border rounded-md border-slate-300 ">
                       Click here to upload
                     </div>
@@ -775,7 +775,7 @@ const CreateTour = () => {
                   className="flex
           "
                 >
-                  <InsertPhotoOutlinedIcon />
+                  <MdOutlineInsertPhoto />
                   <div className="w-1/2 px-2 border rounded-md border-slate-300 ">
                     Click here to upload
                   </div>

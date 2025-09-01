@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
-import TerrainIcon from "@mui/icons-material/Terrain";
-import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
-import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import ContactsIcon from "@mui/icons-material/Contacts";
+import { Link, NavLink } from "react-router-dom";
+import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { RiAdminLine } from "react-icons/ri";
+import { MdStickyNote2 } from "react-icons/md";
+import { PiPhoneCallFill } from "react-icons/pi";
 import logo from "../../assets/Logo.jpg";
 
 const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
   const sideBarItems = [
-    { label: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
-    { label: "Manage Admins", path: "/admins", icon: <SpaceDashboardIcon /> },
-    { label: "Bookings", path: "/booking", icon: <StickyNote2Icon /> },
-    { label: "Tours", path: "/tour", icon: <TerrainIcon /> },
-    { label: "Contact Us", path: "/contactUs", icon: <ContactsIcon /> },
+    { label: "Dashboard", path: "/", icon: <TbLayoutDashboardFilled size={25} /> },
+    { label: "Manage Admins", path: "/admins", icon: <RiAdminLine size={25} /> },
+    { label: "Bookings", path: "/booking", icon: <MdStickyNote2 size={25} /> },
+    { label: "Contact Us", path: "/contactUs", icon: <PiPhoneCallFill size={25} /> },
+    { label: "Demo", path: "/tour", icon: <TbLayoutDashboardFilled size={25} /> },
   ];
 
   // Close sidebar after an item is selected
@@ -37,21 +37,25 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
         className="flex-1 divide-y divide-slate-100 overflow-hidden"
       >
         <div>
-          <ul className="flex flex-1 flex-col gap-1 py-3">
+          <ul className="flex flex-1 flex-col gap-1 py-3 text-slate-700 ">
             {sideBarItems?.map((itm) => (
-              <li className="px-3" key={itm.label}>
-                <Link
-                  to={itm?.path}
-                  className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-500 focus:bg-emerald-50 focus:text-emerald-500 aria-[current=page]:bg-emerald-50 aria-[current=page]:text-emerald-500"
-                  onClick={handleLinkClick} // Close the sidebar when clicked
-                >
-                  <div className="flex items-center self-center">
-                    {itm?.icon}
-                  </div>
-                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-                    {itm?.label}
-                  </div>
-                </Link>
+              <li className="px-3" key={itm.label} >
+              <NavLink
+  to={itm?.path}
+  onClick={handleLinkClick}
+  className={({ isActive }) =>
+    `flex items-center gap-3 rounded p-3  transition-colors 
+     hover:bg-emerald-50 hover:text-emerald-500 
+     focus:bg-emerald-50 focus:text-emerald-500 
+     ${isActive ? "bg-emerald-50 text-emerald-500" : ""}`
+  }
+>
+  <div className="flex items-center self-center">{itm?.icon}</div>
+  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+    {itm?.label}
+  </div>
+</NavLink>
+
               </li>
             ))}
           </ul>

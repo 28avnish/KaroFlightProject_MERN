@@ -10,6 +10,7 @@ import ViewBooking from "../pages/Booking/ViewBooking";
 import ViewOrder from "../pages/Order/ViewOrder";
 import CreateAdminUser from "../pages/SuperAdmin/AdminUser/CreateAdminUser";
 import UpdateAdminUser from "../pages/SuperAdmin/AdminUser/UpdateAdminUser";
+import EditProfile from "../pages/Auth/EditProfile";
 
 export const appRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Dashboard />,
+      },
+      {
+        path: "/update-profile",
+        element: <EditProfile />,
       },
       {
         path: "/admins",
