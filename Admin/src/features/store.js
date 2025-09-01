@@ -3,28 +3,19 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import { encryptTransform } from "redux-persist-transform-encrypt";
-
-import trek from "./slices/trek";
-import activity from "./slices/activity";
-import product from "./slices/product";
 import booking from "./slices/booking";
 import tour from "./slices/tour";
 import auth from "./slices/auth";
 import contactUs from "./slices/contactUs";
 import order from "./slices/order";
-import region from "./slices/region";
 
 // Combine your individual reducers here
 const rootReducer = combineReducers({
-  trek,
-  activity,
-  product,
   booking,
   tour,
   auth,
   contactUs,
   order,
-  region,
 });
 
 // Custom root reducer handling a clear action

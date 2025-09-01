@@ -1,26 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../services/axiosInterceptor";
 
-//Login Api
-
 export const logIn = createAsyncThunk(
-    "admin/login",
-    async (payload, { rejectWithValue }) => {
-      try {
-        const {data} = await instance.post("adminUser/login", payload, {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        return data;
-      } catch (error) {
-       return rejectWithValue(error);
-      }
+  "admin/login",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post("adminUser/login", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
-  );
+  }
+);
 
-  // logout -- logout action to call the logout api
 export const logout = createAsyncThunk(
   "admin/logout",
   async (payload, { rejectWithValue }) => {
@@ -33,7 +30,72 @@ export const logout = createAsyncThunk(
       });
       return response?.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getAdminUsers = createAsyncThunk(
+  "getadmin/",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get("adminUser/getAdmins", {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const createAdminUser = createAsyncThunk(
+  "create/Admin",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post("adminUser/register", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateAdminUser = createAsyncThunk(
+  "update/Admin",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch("adminUser/update", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const deleteAdminUser = createAsyncThunk(
+  "delete admins",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await instance.delete(`/adminUser/delete/${id}`, {
+        withCredentials: true,
+      });
+      return response;
+    } catch (e) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

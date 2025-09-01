@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import TerrainIcon from "@mui/icons-material/Terrain";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
-import CategoryIcon from "@mui/icons-material/Category";
-import HikingIcon from "@mui/icons-material/Hiking";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import logo from "../../assets/Logo.jpg";
 
@@ -13,11 +10,7 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
     { label: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
     { label: "Manage Admins", path: "/admins", icon: <SpaceDashboardIcon /> },
     { label: "Bookings", path: "/booking", icon: <StickyNote2Icon /> },
-    { label: "Product Orders", path: "/order", icon: <ShoppingBasketIcon /> },
-    { label: "Activities", path: "/activity", icon: <HikingIcon /> },
-    { label: "Products", path: "/product", icon: <CategoryIcon /> },
     { label: "Tours", path: "/tour", icon: <TerrainIcon /> },
-    { label: "Regions", path: "/region", icon: <TerrainIcon /> },
     { label: "Contact Us", path: "/contactUs", icon: <ContactsIcon /> },
   ];
 
@@ -34,7 +27,7 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
     >
       <div className="ps-6 mt-2">
         <div className="min-h-[2rem] w-full min-w-0 flex-col items-start justify-center gap-0 text-center">
-          <Link to={`/`}  onClick={handleLinkClick}>
+          <Link to={`/`} onClick={handleLinkClick}>
             <img className="h-16 rounded " src={logo} alt="Logo" />
           </Link>
         </div>
