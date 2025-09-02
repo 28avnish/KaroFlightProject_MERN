@@ -1,7 +1,4 @@
-import React from "react";
-import Marquee from "../../components/Header/Marquee";
-import MiddleHeader from "../../components/Header/MiddleHeader";
-import MegaDropdownHeader from "../../components/Header/MegaDropdownHeader";
+import HeaderComponent from "../../components/Header/Header";
 
 const Header = () => {
   const menuData = [
@@ -66,9 +63,7 @@ const Header = () => {
   ];
   return (
     <div>
-      <Marquee />
-      <MiddleHeader menuData={menuData} />
-      <MegaDropdownHeader data={menuData} />
+      <HeaderComponent menuData={menuData} />
     </div>
   );
 };

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OTP Verification</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    .otp-box {
+      display: inline-block;
+      background: #f0f3ff;
+      color: #2c3e50;
+      padding: 14px 30px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 2px dashed #4f46e5;
+    }
+    .info {
+      font-size: 14px;
+      color: #666;
+      margin-top: 15px;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px;
+        padding: 20px;
+      }
+      .otp-box {
+        font-size: 22px;
+        padding: 12px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Your OTP Code</div>
+    <p>Hello <strong><%= name %></strong>,</p>
+    <p>Please use the following OTP to verify your account:</p>
+
+    <div class="otp-box">
+      <%= otp %>
+    </div>
+
+    <p class="info">This OTP is valid for the next <strong>10 minutes</strong>.  
+    Do not share this code with anyone.</p>
+
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> Karo Flight. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

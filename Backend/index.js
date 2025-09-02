@@ -41,12 +41,14 @@ app.use(
 
 //@@Desc:-----------------importing routers---------------
 import adminUserRoutes from "./src/routes/adminUser.js";
+import customerRoutes from "./src/routes/customer.js";
 
 // @@Desc:-----------------route section-----------------
 app.use("/api/v1/adminUser", adminUserRoutes);
+app.use("/api/v1/customer", customerRoutes);
 
 app.use("/", (req, res) =>
-  res.send("----------WELCOME TO DEMO SERVER OF AVNISH NEGI----------")
+  res.send("----------WELCOME TO KARO FLIGHT SERVER----------")
 );
 
 app.use(errorHandler); // custom error handler

@@ -4,6 +4,7 @@ import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
 import Maintenance from "../pages/Maintenance";
 import ProductList from "../pages/ProductList";
 import ProductDetails from "../pages/ProductDetails";
+import SignUp from "../pages/Auth/Signup";
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -18,6 +19,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <ProductList />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
       {
         path: "/productDetails",
