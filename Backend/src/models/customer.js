@@ -6,7 +6,7 @@ const customerSchema = new mongoose.Schema(
     // Common fields for all users
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true, lowercase: true },
-    phone: { type: String },
+    mobileNumber: { type: String },
 
     // Authentication
     password: { type: String }, // required only for email/password signups

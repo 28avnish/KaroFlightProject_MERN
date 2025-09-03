@@ -7,21 +7,36 @@ import { sendMail } from "../utils/sendMail.js";
 
 export const signUp = asyncHandler(async (req, res, next) => {
   try {
-    const { email, name } = req.body;
+    const { email, name, password, mobileNumber } = req.body;
 
-    // check if user already exists
-    const isUserExist = await Customer.findOne({ email });
-    if (isUserExist) {
+    // check if verified user already exists
+    const existingUser = await Customer.findOne({ email, isVerified: true });
+    if (existingUser) {
       return next(new ErrorResponse("Email already exists.", 409));
     }
 
-    // generate otp
+    // generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000);
 
-    // send email first
+    // send OTP mail
     await sendMail(email, name, otp);
 
-    // upsert OTP doc
+    // check if unverified user exists
+    let user = await Customer.findOne({ email });
+
+    if (!user) {
+      // create new unverified user
+      user = await Customer.create({
+        name,
+        email,
+        mobileNumber,
+        password, // will be hashed by pre-save middleware
+        isVerified: false,
+        provider: "local",
+      });
+    }
+
+    // upsert OTP doc (linked to email)
     await OtpModel.findOneAndUpdate(
       { email, type: "SIGNUP" },
       {
@@ -31,9 +46,10 @@ export const signUp = asyncHandler(async (req, res, next) => {
       { new: true, upsert: true }
     );
 
-    return res
-      .status(200)
-      .json({ success: true, message: "OTP sent successfully" });
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent successfully",
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -42,27 +58,51 @@ export const signUp = asyncHandler(async (req, res, next) => {
   }
 });
 
-export const verifySignupOtp = asyncHandler(async (req, res) => {
-  const { email, password, otp, fullName, mobileNumber } = req?.body;
+export const verifySignupOtp = asyncHandler(async (req, res, next) => {
+  const { email, otp } = req.body;
 
-  // --finding otp in otp model
-  const isOtpValid = await OtpModel.findOne({ email, otp });
-  if (!isOtpValid) {
-    return next(new ErrorResponse("OTP is incorrect or expiry.", 400));
+  // check if user already verified
+  const existingUser = await Customer.findOne({ email });
+  if (existingUser && existingUser.isVerified) {
+    return next(
+      new ErrorResponse("User is already verified. Please log in.", 400)
+    );
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newData = new auth({
-    fullName,
-    email,
-    password: hashedPassword,
-    mobileNumber,
-  });
-  await newData.save();
+  // find OTP record
+  const otpDoc = await OtpModel.findOne({ email, otp, type: "SIGNUP" });
+
+  if (!otpDoc) {
+    return next(new ErrorResponse("OTP is incorrect.", 400));
+  }
+
+  // double-check expiry (since TTL may delay deletion)
+  if (otpDoc.expiresAt < Date.now()) {
+    return next(new ErrorResponse("OTP has expired.", 400));
+  }
+
+  // mark user as verified (safe fallback if user doc doesn't exist)
+  const user = await Customer.findOneAndUpdate(
+    { email },
+    { isVerified: true },
+    { new: true }
+  );
+
+  if (!user) {
+    // instead of exposing "user not found", just show a generic error
+    return next(
+      new ErrorResponse("Something went wrong. Please try again.", 400)
+    );
+  }
 
   res.status(200).json({
-    status: true,
-    message: "Otp verified",
+    success: true,
+    message: "OTP verified successfully. Account activated.",
+    data: {
+      id: user._id,
+      email: user.email,
+      name: user.name,
+    },
   });
 });
 
@@ -91,3 +131,35 @@ export const login = async (req, res, next) => {
     .status(200)
     .json({ status: true, message: "Login successful", user });
 };
+
+export const updateProfile = asyncHandler(async (req, res, next) => {
+  const { password, mobileNumber } = req.body;
+  const userId = req.user.id; // assuming you set req.user from JWT middleware
+
+  // find user
+  const user = await Customer.findById(userId);
+  if (!user) {
+    return next(new ErrorResponse("User not found.", 404));
+  }
+
+  // update password if provided
+  if (password) {
+    user.password = password;
+  }
+  // update mobileNumber if provided
+  if (mobileNumber) {
+    // optional: validate format
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobileNumber)) {
+      return next(new ErrorResponse("Invalid mobile number format.", 400));
+    }
+    user.mobileNumber = mobileNumber;
+  }
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Profile updated successfully.",
+  });
+});
