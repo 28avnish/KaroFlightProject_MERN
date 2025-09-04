@@ -3,12 +3,12 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import { encryptTransform } from "redux-persist-transform-encrypt";
-import demo from "./slices/demo";
+import auth from "./slices/auth";
 
 // ---------------------------------------------------------
 
 const persistConfig = {
-  key: "DEMO",
+  key: "KaroFlight",
   version: 1,
   storage,
   transforms: [
@@ -24,7 +24,7 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  demo,
+  auth,
 });
 
 const rootReducer = (state, action) => {

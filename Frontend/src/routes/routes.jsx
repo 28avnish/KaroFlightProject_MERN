@@ -5,6 +5,8 @@ import Maintenance from "../pages/Maintenance";
 import ProductList from "../pages/ProductList";
 import ProductDetails from "../pages/ProductDetails";
 import SignUp from "../pages/Auth/Signup";
+import NotFound from "../pages/NotFound";
+import SignupOtp from "../pages/Auth/SignupOtp";
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -25,8 +27,16 @@ export const appRouter = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/sign-up/otp",
+        element: <SignupOtp />,
+      },
+      {
         path: "/productDetails",
         element: <ProductDetails />,
+      },
+      {
+        path: "*",
+        element: <NotFound />, // 404 fallback
       },
       //   {
       //     path: "/blog/:slug",

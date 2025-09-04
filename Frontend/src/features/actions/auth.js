@@ -35,11 +35,30 @@ export const logout = createAsyncThunk(
   }
 );
 
+// EMAIL SENT
 export const localSignUp = createAsyncThunk(
   "create/customer/local",
   async (payload, { rejectWithValue }) => {
     try {
       const { data } = await instance.post("customer/signup", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+// VERIFY EMAIL OTP
+export const verifySignupEmail = createAsyncThunk(
+  "customer/verify-signup",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post("customer/verify-signup", payload, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

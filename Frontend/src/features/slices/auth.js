@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import toast from "react-hot-toast";
-import {} from "../action/auth";
-import { localSignUp, logIn, logout } from "../actions/auth";
+import { localSignUp, logIn, logout, verifySignupEmail } from "../actions/auth";
+import { toast } from "sonner";
 // -------------------------------------------------------------------------------------------
 
 // initialState -- initial state of authentication
@@ -10,8 +9,9 @@ const initialState = {
   errorMessage: "",
   isUserLoggedIn: false,
   userData: {},
-  adminsData: [],
-  isDeleted: false,
+  signupData: null,
+  signupMailSentResponse: {},
+  signupOtpVerifyResponse: {},
 };
 
 // -------------------------------------- Slices------------------------------------------------
@@ -19,7 +19,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    clearReduxStore: () => initialState,
+    setSignupEmail: (state, action) => {
+      state.signupEmail = action.payload;
+    },
+    clearSignupEmail: (state) => {
+      state.signupData = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,12 +78,30 @@ const authSlice = createSlice({
       })
       .addCase(localSignUp.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.adminsData = action.payload;
+        state.signupMailSentResponse = action.payload;
         toast.success("Otp sent successfully", {
           position: "top-right",
         });
       })
       .addCase(localSignUp.rejected, (state, action) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload;
+        toast.error(state?.errorMessage, {
+          position: "top-right",
+        });
+      })
+      .addCase(verifySignupEmail.pending, (state, action) => {
+        state.isLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(verifySignupEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.signupOtpVerifyResponse = action.payload;
+        toast.success("Otp verified successfully", {
+          position: "top-right",
+        });
+      })
+      .addCase(verifySignupEmail.rejected, (state, action) => {
         state.isLoading = false;
         state.errorMessage = action.payload;
         toast.error(state?.errorMessage, {
@@ -90,4 +113,4 @@ const authSlice = createSlice({
 
 // ===========================================Exports==================================================
 export default authSlice.reducer;
-export const { clearReduxStore } = authSlice.actions;
+export const { setSignupEmail } = authSlice.actions;
