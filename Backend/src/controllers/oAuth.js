@@ -32,6 +32,7 @@ passport.use(
             provider: "google",
             providerId: profile.id,
             isVerified: true, // trust Google verified emails
+            expireAt: null, // 👈 prevents TTL deletion
           });
         } else {
           console.log(
@@ -73,6 +74,7 @@ passport.use(
           provider: "facebook",
           providerId: profile.id,
           isVerified: true, // trust facebook verified emails
+            expireAt: null, // 👈 prevents TTL deletion
         });
 
         return cb(null, user);

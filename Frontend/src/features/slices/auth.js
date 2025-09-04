@@ -1,17 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { localSignUp, logIn, logout, verifySignupEmail } from "../actions/auth";
+import { forgotPassword, localSignUp, logIn, logout, resetForgotPassword, verifySignupEmail } from "../actions/auth";
 import { toast } from "sonner";
 // -------------------------------------------------------------------------------------------
 
 // initialState -- initial state of authentication
 const initialState = {
   isLoading: false,
+  isVerifyLoading: false,
+  isResetLoading:false,
   errorMessage: "",
   isUserLoggedIn: false,
-  userData: {},
+  userData: null,
   signupData: null,
-  signupMailSentResponse: {},
-  signupOtpVerifyResponse: {},
+  forgotPasswordEmail: null,
+  signupMailSentResponse: null,
+  signupOtpVerifyResponse: null,
+  forgotPassMailSentResponse:null,
+  forgotPassOtpVerifyResponse:null
 };
 
 // -------------------------------------- Slices------------------------------------------------
@@ -19,12 +24,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setSignupEmail: (state, action) => {
-      state.signupEmail = action.payload;
+    setSignupData: (state, action) => {
+      state.signupData = action.payload;
     },
-    clearSignupEmail: (state) => {
-      state.signupData = null;
+    setForgotPasswordEmail: (state, action) => {
+      state.forgotPasswordEmail = action.payload;
     },
+    clearAllStates: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -91,26 +97,62 @@ const authSlice = createSlice({
         });
       })
       .addCase(verifySignupEmail.pending, (state, action) => {
-        state.isLoading = true;
+        state.isVerifyLoading = true;
         state.errorMessage = "";
       })
       .addCase(verifySignupEmail.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isVerifyLoading = false;
         state.signupOtpVerifyResponse = action.payload;
-        toast.success("Otp verified successfully", {
+        toast.success("Account created successfully", {
           position: "top-right",
         });
       })
       .addCase(verifySignupEmail.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isVerifyLoading = false;
         state.errorMessage = action.payload;
         toast.error(state?.errorMessage, {
           position: "top-right",
         });
-      });
+      })
+       .addCase(forgotPassword.pending, (state, action) => {
+        state.isResetLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        state.isResetLoading = false;
+        state.forgotPassMailSentResponse = action.payload;
+        toast.success("Otp sent for password reset", {
+          position: "top-right",
+        });
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.isResetLoading = false;
+        state.errorMessage = action.payload;
+        toast.error(state?.errorMessage, {
+          position: "top-right",
+        });
+      })
+       .addCase(resetForgotPassword.pending, (state, action) => {
+        state.isVerifyLoading = true;
+        state.errorMessage = "";
+      })
+      .addCase(resetForgotPassword.fulfilled, (state, action) => {
+        state.isVerifyLoading = false;
+        state.forgotPassOtpVerifyResponse = action.payload;
+        toast.success("Reset password successfully", {
+          position: "top-right",
+        });
+      })
+      .addCase(resetForgotPassword.rejected, (state, action) => {
+        state.isVerifyLoading = false;
+        state.errorMessage = action.payload;
+        toast.error(state?.errorMessage, {
+          position: "top-right",
+        });
+      })
   },
 });
 
 // ===========================================Exports==================================================
 export default authSlice.reducer;
-export const { setSignupEmail } = authSlice.actions;
+export const { setSignupData ,clearAllStates,setForgotPasswordEmail } = authSlice.actions;

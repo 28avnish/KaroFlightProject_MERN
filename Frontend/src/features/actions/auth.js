@@ -2,10 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../services/axiosInterceptor";
 
 export const logIn = createAsyncThunk(
-  "admin/login",
+  "customer/login",
   async (payload, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post("adminUser/login", payload, {
+      const { data } = await instance.post("customer/login", payload, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -19,10 +19,10 @@ export const logIn = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk(
-  "admin/logout",
+  "customer/logout",
   async (payload, { rejectWithValue }) => {
     try {
-      const response = await instance.post("adminUser/logout", payload, {
+      const response = await instance.post("customer/logout", payload, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -76,6 +76,42 @@ export const updateMobileNumber = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const { data } = await instance.patch("customer/update", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+// EMAIL SENT 
+export const forgotPassword = createAsyncThunk(
+  "/customer/forgot-password",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post("customer/forgot-password", payload, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+// VERIFY EMAIL OTP
+export const resetForgotPassword = createAsyncThunk(
+  "reset-password",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch("customer/reset-password", payload, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",

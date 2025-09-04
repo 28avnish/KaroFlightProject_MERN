@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-     "dev": "nodemon --env-file=.env index.js",
+    "dev": "nodemon --env-file=.env index.js",
     "start": "node index.js",
     "build": "prisma generate && next build"
   },
@@ -28,6 +28,7 @@
     "nodemailer": "^7.0.3",
     "nodemon": "^3.1.10",
     "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7"
   }

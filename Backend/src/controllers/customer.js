@@ -73,7 +73,7 @@ export const verifySignupOtp = asyncHandler(async (req, res, next) => {
   const otpDoc = await OtpModel.findOne({ email, otp, type: "SIGNUP" });
 
   if (!otpDoc) {
-    return next(new ErrorResponse("OTP is incorrect.", 400));
+    return next(new ErrorResponse("Invalid or expired OTP.", 400));
   }
 
   // double-check expiry (since TTL may delay deletion)
@@ -84,7 +84,10 @@ export const verifySignupOtp = asyncHandler(async (req, res, next) => {
   // mark user as verified (safe fallback if user doc doesn't exist)
   const user = await Customer.findOneAndUpdate(
     { email },
-    { isVerified: true },
+    { isVerified: true,
+       expireAt: null, // 👈 prevents TTL deletion
+     },
+    
     { new: true }
   );
 
@@ -132,8 +135,21 @@ export const login = async (req, res, next) => {
     .json({ status: true, message: "Login successful", user });
 };
 
+export const logout = async (req, res, next) => {
+  res.clearCookie("CUSTOMER_TOKEN_KAROFLIGHT", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
+
+  res.status(200).json({
+    status: true,
+    message: "Logged out successfully",
+  });
+};
+
 export const updateProfile = asyncHandler(async (req, res, next) => {
-  const { password, mobileNumber } = req.body;
+  const { mobileNumber } = req.body;
   const userId = req.user.id; // assuming you set req.user from JWT middleware
 
   // find user
@@ -142,10 +158,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse("User not found.", 404));
   }
 
-  // update password if provided
-  if (password) {
-    user.password = password;
-  }
   // update mobileNumber if provided
   if (mobileNumber) {
     // optional: validate format
@@ -163,3 +175,82 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
     message: "Profile updated successfully.",
   });
 });
+
+export const forgotPassword = asyncHandler(async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    const user = await Customer.findOne({ email, isVerified: true });
+    if (!user) {
+      return next(new ErrorResponse("No account found with this email.", 404));
+    }
+
+    // generate OTP
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    // send mail
+    await sendMail(email, user.name, otp);
+
+    // save otp in DB
+    await OtpModel.findOneAndUpdate(
+      { email, type: "FORGOTPASSWORD" },
+      {
+        otp,
+        expiresAt: new Date(Date.now() + 600000), // 10 min expiry
+      },
+      { new: true, upsert: true }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent to your email",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+    });
+  }
+});
+
+
+export const resetPassword = asyncHandler(async (req, res, next) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+
+    const otpRecord = await OtpModel.findOne({
+      email,
+      type: "FORGOTPASSWORD",
+    });
+
+    if (!otpRecord || otpRecord.otp !== otp) {
+      return next(new ErrorResponse("Invalid or expired OTP.", 400));
+    }
+
+    if (otpRecord.expiresAt < Date.now()) {
+      return next(new ErrorResponse("OTP expired.", 400));
+    }
+
+    // update password (will be hashed by pre-save hook)
+    const user = await Customer.findOne({ email, isVerified: true });
+    if (!user) {
+      return next(new ErrorResponse("User not found.", 404));
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successful. Please login with new password.",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Something went wrong",
+    });
+  }
+});
+
+
+

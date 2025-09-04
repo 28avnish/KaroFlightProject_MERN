@@ -23,6 +23,9 @@ const customerSchema = new mongoose.Schema(
 
     // Booking-related fields
     bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
+
+    // expiry field (only for unverified)
+    expireAt: { type: Date, default: Date.now, index: { expires: '24h' } }
   },
   { timestamps: true }
 );

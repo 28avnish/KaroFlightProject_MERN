@@ -34,7 +34,7 @@ const Header = ({ menuData }) => {
         </div>
         <div className="flex gap-5 w-72 justify-end">
           <Link
-            to={"/sign-up"}
+            to={"/login"}
             className="group cursor-pointer relative w-6 lg:w-8 lg:h-8"
           >
             <img

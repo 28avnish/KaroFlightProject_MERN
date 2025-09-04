@@ -2,38 +2,38 @@
 import { createBrowserRouter } from "react-router-dom";
 import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
 import Maintenance from "../pages/Maintenance";
-import ProductList from "../pages/ProductList";
-import ProductDetails from "../pages/ProductDetails";
 import SignUp from "../pages/Auth/Signup";
 import NotFound from "../pages/NotFound";
 import SignupOtp from "../pages/Auth/SignupOtp";
+import Login from "../pages/Auth/Login";
+import ForgotPasswordOtp from "../pages/Auth/ForgotPasswordOtp";
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
 
 // ---------------------------------------------------------------------------------------------------
-console.log("enter inside the routes page");
 export const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
     children: [
       {
-        path: "/",
-        element: <ProductList />,
-      },
-      {
-        path: "/sign-up",
+        path: "/signup",
         element: <SignUp />,
       },
       {
-        path: "/sign-up/otp",
+        path: "/signup/otp",
         element: <SignupOtp />,
       },
       {
-        path: "/productDetails",
-        element: <ProductDetails />,
+        path: "/login",
+        element: <Login />,
       },
+      {
+        path: "/forgot-password-otp",
+        element: <ForgotPasswordOtp />,
+      },
+
       {
         path: "*",
         element: <NotFound />, // 404 fallback
