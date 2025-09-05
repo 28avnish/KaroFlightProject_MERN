@@ -10,27 +10,7 @@ import { socialOAuth } from "./src/controllers/oAuth.js";
 import session from "express-session";
 
 dotenv.config();
-
 const app = express();
-
-const PORT = process.env.PORT || 8000;
-
-connectMongo();
-// @@Desc:------MIDDLEWARES------
-app.use(express.json());
-app.use(cookieParser());
-app.use(morgan("dev"));
-// Express session
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false, // Add this line to resolve the deprecation warning
-    saveUninitialized: false, // Add this line to resolve the deprecation warning
-    cookie: { secure: false },
-  })
-);
-app.use(socialOAuth.initialize());
-app.use(socialOAuth.session());
 
 app.use(
   cors(
@@ -51,6 +31,25 @@ app.use(
         }
   )
 );
+
+const PORT = process.env.PORT || 8000;
+
+connectMongo();
+// @@Desc:------MIDDLEWARES------
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan("dev"));
+// Express session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false, // Add this line to resolve the deprecation warning
+    saveUninitialized: false, // Add this line to resolve the deprecation warning
+    cookie: { secure: false },
+  })
+);
+app.use(socialOAuth.initialize());
+app.use(socialOAuth.session());
 
 //@@Desc:-----------------importing routers---------------
 import adminUserRoutes from "./src/routes/adminUser.js";

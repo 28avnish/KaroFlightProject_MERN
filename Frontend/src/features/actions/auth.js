@@ -88,17 +88,21 @@ export const updateMobileNumber = createAsyncThunk(
   }
 );
 
-// EMAIL SENT 
+// EMAIL SENT
 export const forgotPassword = createAsyncThunk(
   "/customer/forgot-password",
   async (payload, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post("customer/forgot-password", payload, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const { data } = await instance.post(
+        "customer/forgot-password",
+        payload,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -111,12 +115,16 @@ export const resetForgotPassword = createAsyncThunk(
   "reset-password",
   async (payload, { rejectWithValue }) => {
     try {
-      const { data } = await instance.patch("customer/reset-password", payload, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const { data } = await instance.patch(
+        "customer/reset-password",
+        payload,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

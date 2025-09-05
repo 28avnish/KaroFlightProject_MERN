@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { forgotPassword, localSignUp, logIn, logout, resetForgotPassword, verifySignupEmail } from "../actions/auth";
+import {
+  forgotPassword,
+  localSignUp,
+  logIn,
+  logout,
+  resetForgotPassword,
+  verifySignupEmail,
+} from "../actions/auth";
 import { toast } from "sonner";
 // -------------------------------------------------------------------------------------------
 
@@ -7,7 +14,7 @@ import { toast } from "sonner";
 const initialState = {
   isLoading: false,
   isVerifyLoading: false,
-  isResetLoading:false,
+  isResetLoading: false,
   errorMessage: "",
   isUserLoggedIn: false,
   userData: null,
@@ -15,8 +22,8 @@ const initialState = {
   forgotPasswordEmail: null,
   signupMailSentResponse: null,
   signupOtpVerifyResponse: null,
-  forgotPassMailSentResponse:null,
-  forgotPassOtpVerifyResponse:null
+  forgotPassMailSentResponse: null,
+  forgotPassOtpVerifyResponse: null,
 };
 
 // -------------------------------------- Slices------------------------------------------------
@@ -29,6 +36,10 @@ const authSlice = createSlice({
     },
     setForgotPasswordEmail: (state, action) => {
       state.forgotPasswordEmail = action.payload;
+    },
+    setIsUserLoggedInTrue: (state, action) => {
+      state.isUserLoggedIn = true;
+      state.userData = action.payload;
     },
     clearAllStates: () => initialState,
   },
@@ -114,7 +125,7 @@ const authSlice = createSlice({
           position: "top-right",
         });
       })
-       .addCase(forgotPassword.pending, (state, action) => {
+      .addCase(forgotPassword.pending, (state, action) => {
         state.isResetLoading = true;
         state.errorMessage = "";
       })
@@ -132,7 +143,7 @@ const authSlice = createSlice({
           position: "top-right",
         });
       })
-       .addCase(resetForgotPassword.pending, (state, action) => {
+      .addCase(resetForgotPassword.pending, (state, action) => {
         state.isVerifyLoading = true;
         state.errorMessage = "";
       })
@@ -149,10 +160,15 @@ const authSlice = createSlice({
         toast.error(state?.errorMessage, {
           position: "top-right",
         });
-      })
+      });
   },
 });
 
 // ===========================================Exports==================================================
 export default authSlice.reducer;
-export const { setSignupData ,clearAllStates,setForgotPasswordEmail } = authSlice.actions;
+export const {
+  setSignupData,
+  clearAllStates,
+  setForgotPasswordEmail,
+  setIsUserLoggedInTrue,
+} = authSlice.actions;

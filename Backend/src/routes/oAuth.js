@@ -35,9 +35,9 @@ router.get(
       });
 
       // Redirect user back to frontend
-      return res.redirect(process.env.FRONTEND_URL);
+      return res.redirect(`${process.env.FRONTEND_URL}/successAuth`);
     } else {
-      return res.redirect(`${process.env.FRONTEND_URL}/failedAuth`);
+      return res.redirect(`${process.env.FRONTEND_URL}/failedOAuth`);
     }
   }
 );
@@ -63,7 +63,7 @@ router.get(
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
-      res.redirect(`${process.env.FRONTEND_URL}?token=${token}`);
+      return res.redirect(`${process.env.FRONTEND_URL}/successAuth`);
     } else {
       res.redirect(`${process.env.FRONTEND_URL}/failedAuth`);
     }

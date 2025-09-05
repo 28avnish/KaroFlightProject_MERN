@@ -12,6 +12,8 @@ import { Link, Navigate } from "react-router-dom";
 import { clearAllStates, setSignupData } from "../../features/slices/auth";
 import { useEffect } from "react";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoFacebook } from "react-icons/io5";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -31,11 +33,11 @@ export default function SignUp() {
     dispatch(localSignUp(data));
   };
 
-  useEffect(()=>{
-    dispatch(clearAllStates())
-  },[])
+  useEffect(() => {
+    dispatch(clearAllStates());
+  }, []);
 
-    if (isUserLoggedIn) {
+  if (isUserLoggedIn) {
     return <Navigate to="/" replace />;
   }
   if (signupMailSentResponse?.success) {
@@ -56,11 +58,11 @@ export default function SignUp() {
           {/* Social buttons */}
           <div className="flex gap-3 mb-6">
             <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+              <FcGoogle size={20} />
               Sign up with Google
             </button>
             <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/x-icon.svg" alt="X" className="w-4 h-4" />
+              <IoLogoFacebook color="#1877F2" size={20} />
               Sign up with Facebook
             </button>
           </div>
@@ -156,11 +158,11 @@ export default function SignUp() {
             </div>
 
             <button
-            disabled={isLoading}
+              disabled={isLoading}
               type="submit"
               className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
             >
-             {isLoading ? <ButtonLoader/> : "Sign Up"}
+              {isLoading ? <ButtonLoader /> : "Sign Up"}
             </button>
           </form>
 

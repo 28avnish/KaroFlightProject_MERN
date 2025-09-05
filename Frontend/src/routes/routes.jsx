@@ -7,6 +7,8 @@ import NotFound from "../pages/NotFound";
 import SignupOtp from "../pages/Auth/SignupOtp";
 import Login from "../pages/Auth/Login";
 import ForgotPasswordOtp from "../pages/Auth/ForgotPasswordOtp";
+import SuccessAuth from "../pages/Auth/OAuth/SuccessAuth";
+import FailedAuth from "../pages/Auth/OAuth/FailedAuth";
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -32,6 +34,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "/forgot-password-otp",
         element: <ForgotPasswordOtp />,
+      },
+      {
+        path: "/successAuth",
+        element: <SuccessAuth />,
+      },
+      {
+        path: "/failedAuth",
+        element: <FailedAuth />,
       },
 
       {
