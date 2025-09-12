@@ -56,11 +56,14 @@ app.use(
 import adminUserRoutes from "./src/routes/adminUser.js";
 import customerRoutes from "./src/routes/customer.js";
 import oAuthRoutes from "./src/routes/oAuth.js";
+import blogRoutes from "./src/routes/blogRoute.js";
+
 
 // @@Desc:-----------------route section-----------------
 app.use("/api/v1/adminUser", adminUserRoutes);
 app.use("/api/v1/customer", customerRoutes);
 app.use("/api/v1/oAuth", oAuthRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 app.use("/", (req, res) =>
   res.send("----------WELCOME TO KARO FLIGHT SERVER----------")
