@@ -14,12 +14,14 @@ const sectionColor = "bg-[#F0F0F0]";
 const gradient2 =
   "bg-gradient-to-r from-[#FFFFFF]/0 via-[#F4EBE4]/50 to-[#FFE0BC]/0";
 const textWhite = "text-white";
+const heroGradient =
+  "linear-gradient(to bottom right, rgba(4,14,78,0.8) 0%, rgba(0,0,0,0.8) 100%)";
 
 const Hero = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full h-screen flex items-center justify-center overflow-hidden" >
         {/* Background Image */}
         <img
           src={heroImg}
@@ -28,7 +30,9 @@ const Hero = () => {
         />
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center flex-col px-4 z-10">
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center flex-col px-4 z-10"
+        style={{background: heroGradient}}
+        >
           {/* Main Heading */}
           <h1
             className={`max-w-4xl text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold ${textWhite} mb-4 lg:mb-6`}

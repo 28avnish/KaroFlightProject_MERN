@@ -10,6 +10,7 @@ import ExploreDestinationsSection from "../FlightSearch/ExploreDestinationsSecti
 // import { FlightSearchProvider } from "../../contexts/FlightSearchContext";
 import FAQ from "../FlightSearch/FAQ";
 import { FlightSearchProvider } from "../../contexts/FlightSearchContext";
+import FlightOptions from "../FlightSearch/FlightOptions";
 
 const accentText = "text-[#FF621F]";
 const accentBG = "bg-[#FF621F]";
@@ -201,7 +202,7 @@ const FlightHome = () => {
         </HeroSection>
 
         {/* Feature Cards Section */}
-        <FeatureCards featureCards={featureCards} />
+        {/* <FeatureCards featureCards={featureCards} /> */}
 
         {/* Top Deals Section */}
         <TopDealsSection
@@ -216,10 +217,12 @@ const FlightHome = () => {
         />
 
         {/* Explore Destinations Section */}
-        <ExploreDestinationsSection
+        {/* <ExploreDestinationsSection
           exploreDestinations={exploreDestinations}
           accentText={accentText}
-        />
+        /> */}
+
+        <FlightOptions />
         <FAQ />
       </div>
     </FlightSearchProvider>

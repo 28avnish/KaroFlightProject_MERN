@@ -46,16 +46,16 @@ const HeroSection = ({
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 space-y-4"
       style={{background: heroGradient}}>
         <h1
-          className={`${whiteText} text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-bold leading-tight`}
+          className={`${whiteText} text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-bold leading-tight mb-5`}
         >
-          Compare flights, <span className={`${accentText}`}>save big</span>
+         Here are the best flights from <br className="hidden md:block" /> <span className={`${accentText}`}>anywhere to everywhere</span>
         </h1>
-        <p
+        {/* <p
           className={`text-sm sm:text-base md:text-xl lg:text-[24px] ${whiteText}  max-w-4xl leading-relaxed`}
         >
           Search across 1,000+ providers • No hidden fees
           <br className="hidden sm:block" /> Find the cheapest month to fly
-        </p>
+        </p> */}
 
         {/* Toggle Button for Hotels and Flights */}
         <div

@@ -14,10 +14,10 @@ const TopDealsSection = ({
     <section className="my-8 md:my-12 lg:my-15 px-4">
       <div className="flex flex-col">
         <div className="flex items-center justify-center flex-col">
-          <h1 className="text-2xl md:text-3xl lg:text-[36px] font-bold text-center">
-            Top deals from India
+          <h1 className="text-2xl md:text-3xl lg:text-[36px] font-bold text-center mb-5">
+            Flight options from India
           </h1>
-          <div className="flex flex-wrap gap-2 my-5 md:my-7 justify-center">
+          {/* <div className="flex flex-wrap gap-2 my-5 md:my-7 justify-center">
             {filterOptions.map((item) => {
               const isActive = activeFilter === item;
 
@@ -35,6 +35,13 @@ const TopDealsSection = ({
                 </div>
               );
             })}
+          </div> */}
+          <div className="mb-15">
+            <p className={`text-[18px] ${textLightGray}`}>
+              Here you have the flight options with the most affordable prices.
+              Hurry up because of this departure within the upcoming three
+              months.
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto max-w-7xl gap-6 md:gap-8 lg:gap-10">
