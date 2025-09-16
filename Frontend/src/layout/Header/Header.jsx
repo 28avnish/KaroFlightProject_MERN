@@ -100,18 +100,18 @@ const Header = () => {
     <nav className="w-full bg-white shadow-sm sticky top-0 z-60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2"  onClick={() => navigate("/")}>
           <img
             src={KaroFlightLogo}
             alt="KARO-FLIGHT-LOGO"
             className="w-[124px] h-[49px]"
           />
         </div>
-        <div
+        {/* <div
           id="google_translate_element"
           className=""
           style={{ width: "100px" }}
-        ></div>
+        ></div> */}
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex space-x-6 text-sm font-medium text-gray-700">

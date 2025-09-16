@@ -69,7 +69,7 @@ const HeroSection = ({
             }`}
             onClick={handleFlightClick}
           ><BsAirplaneEngines />
-            Flights
+            Flight
           </div>
           <div
             className={`text-[#808080] font-medium cursor-pointer transition-all duration-300 ease-in-out flex items-center gap-2 ${

@@ -95,7 +95,7 @@ const HeroSection = ({}) => {
             onClick={handleFlightClick}
           >
             <BsAirplaneEngines className="text-sm md:text-base" />
-            <span className="whitespace-nowrap">Flights</span>
+            <span className="whitespace-nowrap">Flight</span>
           </div>
           <div
             className={`text-[#808080] font-medium cursor-pointer transition-all duration-300 ease-in-out flex items-center gap-1 sm:gap-2 ${
