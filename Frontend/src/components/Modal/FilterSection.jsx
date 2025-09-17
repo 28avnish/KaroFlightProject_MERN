@@ -13,7 +13,7 @@ const FilterSection = ({ filters, onFilterChange }) => {
       <button
         type="button"
         onClick={() => setShowFilters(!showFilters)}
-        className="flex items-center gap-2 text-orange-500 font-medium mb-2"
+        className="flex items-center gap-2 text-orange-500 font-medium mb-2 cursor-pointer"
       >
         <FaFilter />
         {showFilters ? 'Hide Filters' : 'Show Filters'}
@@ -24,14 +24,14 @@ const FilterSection = ({ filters, onFilterChange }) => {
           {/* Star Rating */}
           <div>
             <h4 className="font-medium text-gray-700 mb-2">Star Rating</h4>
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               {[5, 4, 3].map((star) => (
-                <label key={star} className="flex items-center gap-2">
+                <label key={star} className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={filters.starRating.includes(star)}
                     onChange={() => handleFilterChange('starRating', star)}
-                    className="rounded text-orange-500 focus:ring-orange-400"
+                    className="rounded cursor-pointer text-orange-500 focus:ring-orange-400"
                   />
                   <span>{star} Star{star > 1 ? 's' : ''}</span>
                 </label>
@@ -43,21 +43,21 @@ const FilterSection = ({ filters, onFilterChange }) => {
           <div>
             <h4 className="font-medium text-gray-700 mb-2">Amenities</h4>
             <div className="space-y-2">
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={filters.freeCancellation}
                   onChange={() => handleFilterChange('freeCancellation', !filters.freeCancellation)}
-                  className="rounded text-orange-500 focus:ring-orange-400"
+                  className="rounded cursor-pointer text-orange-500 focus:ring-orange-400"
                 />
                 <span>Free Cancellation</span>
               </label>
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={filters.breakfastIncluded}
                   onChange={() => handleFilterChange('breakfastIncluded', !filters.breakfastIncluded)}
-                  className="rounded text-orange-500 focus:ring-orange-400"
+                  className="rounded cursor-pointer text-orange-500 focus:ring-orange-400"
                 />
                 <span>Breakfast Included</span>
               </label>
@@ -68,12 +68,12 @@ const FilterSection = ({ filters, onFilterChange }) => {
           <div>
             <h4 className="font-medium text-gray-700 mb-2">Special Deals</h4>
             <div className="space-y-2">
-              <label className="flex items-center gap-2">
+              <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={filters.dealsTonight}
                   onChange={() => handleFilterChange('dealsTonight', !filters.dealsTonight)}
-                  className="rounded text-orange-500 focus:ring-orange-400"
+                  className="rounded cursor-pointer text-orange-500 focus:ring-orange-400"
                 />
                 <span>Deals Tonight</span>
               </label>

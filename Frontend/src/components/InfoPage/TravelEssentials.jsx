@@ -1,5 +1,7 @@
 import React from "react";
 import Fly from "../../assets/images/Fly.svg";
+import activities from "../../assets/images/activities.jpg";
+import HotelsAndAccommodations from "../../assets/images/HotelsAndAccommodations.jpg";
 import { FaHotel, FaPlaneDeparture } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 
@@ -46,14 +48,14 @@ const TravelEssentials = () => {
               },
               {
                 category: "Hotels & Stays",
-                image: Fly,
+                image: HotelsAndAccommodations,
                 description:
                   "Booking confirmations, check-in processes, amenities, and local recommendations for your accommodation.",
                 icon: <FaHotel />,
               },
               {
                 category: "Activities",
-                image: Fly,
+                image: activities,
                 description:
                   "Discover local attractions, guided tours, and experiences to make the most of your destination.",
                 icon: <IoLocationOutline />,
@@ -64,10 +66,10 @@ const TravelEssentials = () => {
                 className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md  group group-hover:shadow-xl"
               >
                 <div className="overflow-hidden relative ">
-                  <div className=" h-full w-full transition-transform duration-300 ease-in-out group-hover:scale-105">
+                  <div className=" h-[192px] w-full transition-transform duration-300 ease-in-out group-hover:scale-105">
                     <img
                       src={item.image}
-                      className="h-full w-full object-cover group-hover:scale-105"
+                      className="h-full w-full object-fit group-hover:scale-105"
                     />
                     <div
                       className="absolute inset-0"

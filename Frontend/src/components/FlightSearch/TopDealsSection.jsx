@@ -48,12 +48,12 @@ const TopDealsSection = ({
           {topDeals.map((deal) => (
             <div
               key={deal.id}
-              className="overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="overflow-hidden cursor-pointer group rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <img
                 src={deal.image}
                 alt={deal.destination}
-                className="w-full h-40 md:h-48 object-cover"
+                className="w-full h-40 md:h-48 object-cover group-hover:scale-110 transition duration-300"
               />
               <div className="rounded-b-2xl border border-t-neutral-50 border-gray-300 p-3 md:p-4">
                 <div className="flex items-center justify-between">

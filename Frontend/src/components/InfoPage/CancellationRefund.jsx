@@ -1,7 +1,10 @@
 import React from "react";
 import Search from "../../assets/images/Search.svg";
+import CancellatioRules from "../../assets/images/CancellatioRules.jpg";
+import RefundFlow from "../../assets/images/RefundFlow.jpg";
 import { BsCheck2Circle, BsExclamationCircle } from "react-icons/bs";
 import { MdOutlineWatchLater } from "react-icons/md";
+import FAQSection from "./FAQSection";
 
 const gradient = "linear-gradient(90deg, #0E064B 0%, #000000 100%)";
 const heroGradient =
@@ -39,7 +42,7 @@ const CancellationRefund = () => {
             <div className=" border border-gray-200 rounded-2xl p-6 flex items-start">
               <div className="mr-5 flex-shrink-0">
                 <img
-                  src={Search}
+                  src={CancellatioRules}
                   className="h-16 w-16 rounded-xl object-cover"
                   alt="Cancellation Rules"
                 />
@@ -59,7 +62,7 @@ const CancellationRefund = () => {
             <div className=" border border-gray-200 rounded-2xl p-6 flex items-start">
               <div className="mr-5 flex-shrink-0">
                 <img
-                  src={Search}
+                  src={RefundFlow}
                   className="h-16 w-16 rounded-xl object-cover"
                   alt="Refund Flow"
                 />
@@ -95,39 +98,7 @@ const CancellationRefund = () => {
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-6 text-center">
-              Frequently Asked Questions
-            </h3>
-
-            <div className=" divide-y-2 divide-gray-300">
-              {["Refund timeline", "Failed booking", "Contacting support"].map(
-                (question, index) => (
-                  <div
-                    key={index}
-                    className="py-6 flex justify-between items-center"
-                  >
-                    <span className="font-medium">{question}</span>
-                    <button className="text-gray-400 hover:text-gray-600">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
+          <FAQSection />
         </div>
       </section>
     </div>

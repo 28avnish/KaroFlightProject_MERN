@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
-import { LuBell, LuGlobe, LuHotel, LuShield, LuTag, LuTicket } from "react-icons/lu";
+import {
+  LuBell,
+  LuGlobe,
+  LuHotel,
+  LuShield,
+  LuTag,
+  LuTicket,
+} from "react-icons/lu";
 
 const darkBlackText = "text-[#000000]";
 const accentText = "text-[#FF621F]";
 const whiteBG = "bg-[#ffffff]";
 const textLightGray = "text-[#808080]";
 
-// Static English content only
 const englishContent = {
   title: "Finding the best flight options anywhere across the world?",
   description:
@@ -64,7 +70,6 @@ const FlightOptions = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
 
-  // Adjust number of visible cards based on screen size
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -72,28 +77,23 @@ const FlightOptions = () => {
       setIsTablet(width >= 768 && width < 1024);
 
       if (width < 640) {
-        setVisibleCards(3); // Show 3 cards on mobile
+        setVisibleCards(3);
       } else if (width < 1024) {
-        setVisibleCards(4); // Show 4 cards on tablet
+        setVisibleCards(4);
       } else {
-        setVisibleCards(6); // Show all cards on desktop
+        setVisibleCards(6);
       }
     };
 
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
-
-    // Clean up
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="py-8 md:py-16">
       <div className="flex items-center justify-center flex-col">
-        <div className="flex flex-col items-center justify-center space-y-4  mx-auto px-4 max-w-[1368px]">
+        <div className="flex flex-col items-center justify-center space-y-4 mx-auto px-4 max-w-[1368px]">
           <h1
             className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center ${darkBlackText}`}
           >
@@ -106,7 +106,6 @@ const FlightOptions = () => {
           </p>
         </div>
 
-        {/* Grid container with responsive layout */}
         <div className="w-full py-8 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-4 md:gap-6 lg:gap-x-16 xl:gap-x-24 md:max-w-[1368px] max-w-7xl mx-auto px-4 sm:px-6">
           {englishContent.flightOptionsData
             .slice(0, visibleCards)
@@ -135,9 +134,9 @@ const FlightOptions = () => {
             })}
         </div>
 
-        {/* Show more/less button for smaller screens */}
         {visibleCards < englishContent.flightOptionsData.length && (
           <button
+            type="button"
             onClick={() =>
               setVisibleCards(englishContent.flightOptionsData.length)
             }
@@ -150,6 +149,7 @@ const FlightOptions = () => {
         {visibleCards === englishContent.flightOptionsData.length &&
           (isMobile || isTablet) && (
             <button
+              type="button"
               onClick={() => {
                 if (isMobile) {
                   setVisibleCards(3);

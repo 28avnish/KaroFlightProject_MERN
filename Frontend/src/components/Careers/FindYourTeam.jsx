@@ -1,9 +1,12 @@
-import imageSvg from "../../assets/images/Image.svg";
+import Designing from "../../assets/images/Designing.jpg";
+import EngineeringData from "../../assets/images/Engineering&Data.jpg";
+import GrowthPartnerships from "../../assets/images/Growth&Partnerships.jpg";
+import OperationsSupport from "../../assets/images/Operations&Support.jpg";
 
 const FindYourTeam = () => {
   const teams = [
     {
-      image: imageSvg,
+      image: Designing,
       title: "Product & Design",
       description:
         "Shape our experiences that delight millions of travelers. From strategy to visual design and prototyping.",
@@ -11,7 +14,7 @@ const FindYourTeam = () => {
       buttonText: "View Product & Design Roles",
     },
     {
-      image: imageSvg,
+      image: EngineeringData,
       title: "Engineering & Data",
       description:
         "Build scalable systems and derive insights from data. Work with cutting-edge technology to power the future of travel.",
@@ -19,7 +22,7 @@ const FindYourTeam = () => {
       buttonText: "View Engineering & Data Roles",
     },
     {
-      image: imageSvg,
+      image: GrowthPartnerships,
       title: "Growth & Partnerships",
       description:
         "Drive our growth and forge strategic partnerships. Scale our impact through marketing, sales, and business development.",
@@ -27,7 +30,7 @@ const FindYourTeam = () => {
       buttonText: "View Growth & Partnerships Roles",
     },
     {
-      image: imageSvg,
+      image: OperationsSupport,
       title: "Operations & Support",
       description:
         "Create exceptional customer experiences and operational excellence. Be the backbone that enables everything else to thrive.",
@@ -57,7 +60,7 @@ const FindYourTeam = () => {
                 key={index}
                 className=" p-6 hover:scale-105 hover:bg-[#f1f2f4] transition-all duration-150 group"
               >
-                <img src={team.image} className="rounded-t-xl shadow" />
+                <img src={team.image} className="rounded-t-xl shadow h-[261px] w-full" />
                 <h3 className="text-[24px] font-normal text-gray-800 mb-4">
                   {team.title}
                 </h3>

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import UAEImg from "../../assets/images/UAEImage.svg";
+import London from "../../assets/images/London.svg";
+import Bangkok from "../../assets/images/Bangkok.svg";
+import Singapore from "../../assets/images/Singapore.svg";
 import Thailand from "../../assets/images/Thailand.svg";
 import TravelersModal from "../Modal/TravelersModal";
 import HeroSection from "../FlightSearch/HeroSection";
@@ -120,7 +123,7 @@ const topDeals = [
   },
   {
     id: 2,
-    image: UAEImg,
+    image: Singapore,
     destination: "Singapore",
     country: "Singapore",
     price: "₹18,999",
@@ -129,7 +132,7 @@ const topDeals = [
   },
   {
     id: 3,
-    image: UAEImg,
+    image: Bangkok,
     destination: "Bangkok",
     country: "Thailand",
     price: "₹15,999",
@@ -138,7 +141,7 @@ const topDeals = [
   },
   {
     id: 4,
-    image: UAEImg,
+    image: London,
     destination: "London",
     country: "UK",
     price: "₹45,999",

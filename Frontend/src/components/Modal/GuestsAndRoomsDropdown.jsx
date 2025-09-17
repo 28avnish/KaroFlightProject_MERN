@@ -64,7 +64,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 flex items-center justify-between"
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-left text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 flex items-center justify-between cursor-pointer"
       >
         <span>{getSummaryText()}</span>
         <FaChevronDown className={`text-gray-500 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -86,7 +86,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
                 type="button"
                 disabled={adults <= 1}
                 onClick={() => setAdults(adults - 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
                 -
               </button>
@@ -94,7 +94,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
               <button
                 type="button"
                 onClick={() => setAdults(adults + 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded cursor-pointer"
               >
                 +
               </button>
@@ -112,7 +112,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
                 type="button"
                 disabled={children <= 0}
                 onClick={() => setChildren(children - 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
                 -
               </button>
@@ -120,7 +120,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
               <button
                 type="button"
                 onClick={() => setChildren(children + 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded cursor-pointer"
               >
                 +
               </button>
@@ -138,7 +138,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
                 type="button"
                 disabled={rooms <= 1}
                 onClick={() => setRooms(rooms - 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
                 -
               </button>
@@ -146,7 +146,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
               <button
                 type="button"
                 onClick={() => setRooms(rooms + 1)}
-                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded"
+                className="w-6 h-6 flex items-center justify-center bg-gray-100 rounded cursor-pointer"
               >
                 +
               </button>
@@ -158,7 +158,7 @@ const GuestsAndRoomsDropdown = ({ onChange }) => {
             <button
               type="button"
               onClick={handleDone}
-              className="px-4 py-1 bg-orange-500 text-white rounded text-sm hover:bg-orange-600 transition-colors flex items-center justify-center gap-1"
+              className="px-4 py-1 cursor-pointer bg-orange-500 text-white rounded text-sm hover:bg-orange-600 transition-colors flex items-center justify-center gap-1"
             >
               <FaCheck className="text-xs" />
               Done
