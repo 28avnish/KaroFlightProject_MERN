@@ -1,4 +1,4 @@
-import AdminUser from "../models/AdminUser.js";
+import AdminUser from "../models/adminUser.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import ErrorResponse from "../utils/errorResponse.js";
 import jwt from "jsonwebtoken";
@@ -9,7 +9,7 @@ export const newAdminUser = asyncHandler(async (req, res, next) => {
   // check if email already exists
   const isUserExist = await AdminUser.findOne({ email });
   if (isUserExist) {
-    return next(new ErrorResponse("Email already exists.", 409));
+    return next(new ErrorResponse("Email already exists.", 409)); 
   }
 
   // Create user (can be admin or superadmin)
