@@ -89,16 +89,16 @@ export default function Login() {
           <div className="flex gap-3 mb-6">
             <Link
               to={`${baseURL}/oAuth/google`}
-              className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+              className="flex px-2 items-center justify-center text-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
             >
-              <FcGoogle size={20} />
+              <FcGoogle size={35} />
               Login with Google
             </Link>
             <Link
               to={`${baseURL}/oAuth/facebook`}
-              className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+              className="flex px-2 items-center text-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
             >
-              <IoLogoFacebook color="#1877F2" size={20} />
+              <IoLogoFacebook color="#1877F2" size={35} />
               Login with Facebook
             </Link>
           </div>
