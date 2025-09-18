@@ -85,7 +85,7 @@ const TravelersModal = () => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
+                  className="w-8 h-8 rounded-full border  border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
                   onClick={() => setAdults(Math.max(1, adults - 1))}
                   disabled={adults <= 1}
                 >
@@ -93,7 +93,7 @@ const TravelersModal = () => {
                 </button>
                 <span className="mx-3 w-6 text-center">{adults}</span>
                 <button
-                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
+                  className="w-8 h-8 rounded-full border cursor-pointer border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
                   onClick={() => setAdults(adults + 1)}
                   disabled={adults >= 9}
                 >
@@ -110,7 +110,7 @@ const TravelersModal = () => {
               </div>
               <div className="flex items-center">
                 <button
-                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
+                  className="w-8 h-8 rounded-full border cursor-pointer border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
                   onClick={removeChild}
                   disabled={children <= 0}
                 >
@@ -118,7 +118,7 @@ const TravelersModal = () => {
                 </button>
                 <span className="mx-3 w-6 text-center">{children}</span>
                 <button
-                  className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
+                  className="w-8 h-8 rounded-full border cursor-pointer border-gray-300 flex items-center justify-center text-gray-600 disabled:opacity-50"
                   onClick={addChild}
                   disabled={children >= 6 || adults + children >= 9}
                 >
@@ -165,11 +165,11 @@ const TravelersModal = () => {
                     name="travelClass"
                     checked={travelClass === cls}
                     onChange={() => setTravelClass(cls)}
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 cursor-pointer"
                   />
                   <label
                     htmlFor={cls}
-                    className="ml-2 block text-sm text-gray-700"
+                    className="ml-2 block text-sm text-gray-700 cursor-pointer"
                   >
                     {cls}
                   </label>
@@ -189,11 +189,11 @@ const TravelersModal = () => {
               id="directOnly"
               checked={directOnly}
               onChange={() => setDirectOnly(!directOnly)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
             />
             <label
               htmlFor="directOnly"
-              className="ml-2 block text-sm text-gray-700"
+              className="ml-2 block cursor-pointer text-sm text-gray-700"
             >
               Direct flights only
             </label>
@@ -201,7 +201,7 @@ const TravelersModal = () => {
 
           <button
             onClick={handleApply}
-            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium"
+            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium cursor-pointer"
           >
             Apply
           </button>

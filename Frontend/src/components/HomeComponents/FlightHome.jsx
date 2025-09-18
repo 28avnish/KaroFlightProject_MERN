@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import UAEImg from "../../assets/images/UAEImage.svg";
+import London from "../../assets/images/London.svg";
+import Bangkok from "../../assets/images/Bangkok.svg";
+import Singapore from "../../assets/images/Singapore.svg";
 import Thailand from "../../assets/images/Thailand.svg";
 import TravelersModal from "../Modal/TravelersModal";
 import HeroSection from "../FlightSearch/HeroSection";
@@ -10,6 +13,7 @@ import ExploreDestinationsSection from "../FlightSearch/ExploreDestinationsSecti
 // import { FlightSearchProvider } from "../../contexts/FlightSearchContext";
 import FAQ from "../FlightSearch/FAQ";
 import { FlightSearchProvider } from "../../contexts/FlightSearchContext";
+import FlightOptions from "../FlightSearch/FlightOptions";
 
 const accentText = "text-[#FF621F]";
 const accentBG = "bg-[#FF621F]";
@@ -119,7 +123,7 @@ const topDeals = [
   },
   {
     id: 2,
-    image: UAEImg,
+    image: Singapore,
     destination: "Singapore",
     country: "Singapore",
     price: "₹18,999",
@@ -128,7 +132,7 @@ const topDeals = [
   },
   {
     id: 3,
-    image: UAEImg,
+    image: Bangkok,
     destination: "Bangkok",
     country: "Thailand",
     price: "₹15,999",
@@ -137,7 +141,7 @@ const topDeals = [
   },
   {
     id: 4,
-    image: UAEImg,
+    image: London,
     destination: "London",
     country: "UK",
     price: "₹45,999",
@@ -201,7 +205,7 @@ const FlightHome = () => {
         </HeroSection>
 
         {/* Feature Cards Section */}
-        <FeatureCards featureCards={featureCards} />
+        {/* <FeatureCards featureCards={featureCards} /> */}
 
         {/* Top Deals Section */}
         <TopDealsSection
@@ -216,10 +220,12 @@ const FlightHome = () => {
         />
 
         {/* Explore Destinations Section */}
-        <ExploreDestinationsSection
+        {/* <ExploreDestinationsSection
           exploreDestinations={exploreDestinations}
           accentText={accentText}
-        />
+        /> */}
+
+        <FlightOptions />
         <FAQ />
       </div>
     </FlightSearchProvider>

@@ -1,4 +1,8 @@
 import Search from "../../assets/images/Search.svg";
+import SearchNew from "../../assets/images/SearchNew.jpg";
+import Book from "../../assets/images/Book.jpg";
+import compare from "../../assets/images/compare.jpg";
+import manage from "../../assets/images/manage.jpg";
 import { FaSearch } from "react-icons/fa";
 import {FaGear} from 'react-icons/fa6'
 import { MdCreditCard } from "react-icons/md";
@@ -39,28 +43,28 @@ const HowKFWorks = () => {
           <div className="grid md:grid-cols-4 sm:gap-30 justify-center items-center">
             {[
               {
-                image: Search,
+                image: SearchNew,
                 icon: <FaSearch className="text-3xl" />,
                 number: 1,
                 title: "Search",
                 description: "Find flights and destinations",
               },
               {
-                image: Search,
+                image: compare,
                 icon: <VscGraph className="text-3xl" />,
                 number: 2,
                 title: "Compare",
                 description: "Compare prices and options",
               },
               {
-                image: Search,
+                image: Book,
                 icon: <MdCreditCard className="text-3xl" />,
                 number: 3,
                 title: "Book",
                 description: "Secure checkout process",
               },
               {
-                image: Search,
+                image: manage,
                 icon: <FaGear className="text-3xl" />,
                 number: 4,
                 title: "Manage",
@@ -73,7 +77,7 @@ const HowKFWorks = () => {
               >
                 <div className="relative mb-6">
                   <div className="w-full h-full  rounded-full flex items-center justify-center  text-2xl font-bold mx-auto">
-                    <img src={step.image} className="" />
+                    <img src={step.image} className="h-[214px] w-[214px] rounded-2xl " />
                   </div>
                   <div
                     className={`absolute -top-4 -right-8 rounded-full h-8 w-8 shadow-md flex items-center justify-center bg-[#002C52] ${textWhite}`}

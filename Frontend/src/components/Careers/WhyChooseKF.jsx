@@ -1,4 +1,8 @@
 import imageSvg from "../../assets/images/Image.svg";
+import WorkLifeHarmony from "../../assets/images/WorkLifeHarmony.jpg";
+import GlobalImpact from "../../assets/images/GlobalImpact.jpg";
+import GrowthLearning from "../../assets/images/Growth&Learning.jpg";
+
 
 const accentColor = "bg-[#FF621F]";
 const whiteBG = "bg-[#FFFFFF]";
@@ -15,19 +19,19 @@ const WhyChooseKF = () => {
         "Work on cutting-edge technology that impacts millions of travelers worldwide—from human-supervised recommendations to real-time booking systems.",
     },
     {
-      image: imageSvg,
+      image: GrowthLearning,
       title: "Growth & Learning",
       description:
         "Accelerate your career with mentorship programs, learning budgets, and opportunities to work with industry leaders.",
     },
     {
-      image: imageSvg,
+      image: GlobalImpact,
       title: "Global Impact",
       description:
         "Your work directly shapes the future of travel. Build products that connect people, cultures, and experiences across the globe.",
     },
     {
-      image: imageSvg,
+      image: WorkLifeHarmony,
       title: "Work-Life Harmony",
       description:
         "Flexible remote work options, unlimited PTO, and a culture that prioritizes your wellbeing and personal growth.",
@@ -50,7 +54,7 @@ const WhyChooseKF = () => {
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {features.map((feature, index) => (
               <div
                 key={index}

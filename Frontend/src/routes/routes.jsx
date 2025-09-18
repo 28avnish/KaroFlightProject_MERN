@@ -23,6 +23,7 @@ import HotelBooking from "../components/Hotel/HotelBooking";
 import HotelBookingCancellation from "../components/Hotel/HotelBookingCancellation";
 import AdminApprovalFlow from "../components/Admin/AdminApproval";
 import NewsletterSubscription from "../components/Newsletter/Newsletter";
+import Info from "../pages/Info/Info";
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -80,6 +81,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/info",
+        element: <Info />,
       },
       {
         path: "/offer",

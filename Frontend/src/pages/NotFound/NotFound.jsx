@@ -15,7 +15,7 @@ const NotFound = () => {
         </p>
 
         <a
-          href="index.html"
+          href="/"
           class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-3.5 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 "
         >
           Back to Home Page

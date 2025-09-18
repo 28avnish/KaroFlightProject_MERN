@@ -14,10 +14,10 @@ const TopDealsSection = ({
     <section className="my-8 md:my-12 lg:my-15 px-4">
       <div className="flex flex-col">
         <div className="flex items-center justify-center flex-col">
-          <h1 className="text-2xl md:text-3xl lg:text-[36px] font-bold text-center">
-            Top deals from India
+          <h1 className="text-2xl md:text-3xl lg:text-[36px] font-bold text-center mb-5">
+            Flight options from India
           </h1>
-          <div className="flex flex-wrap gap-2 my-5 md:my-7 justify-center">
+          {/* <div className="flex flex-wrap gap-2 my-5 md:my-7 justify-center">
             {filterOptions.map((item) => {
               const isActive = activeFilter === item;
 
@@ -35,18 +35,25 @@ const TopDealsSection = ({
                 </div>
               );
             })}
+          </div> */}
+          <div className="mb-15">
+            <p className={`text-[18px] ${textLightGray}`}>
+              Here you have the flight options with the most affordable prices.
+              Hurry up because of this departure within the upcoming three
+              months.
+            </p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto max-w-7xl gap-6 md:gap-8 lg:gap-10">
           {topDeals.map((deal) => (
             <div
               key={deal.id}
-              className="overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="overflow-hidden cursor-pointer group rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <img
                 src={deal.image}
                 alt={deal.destination}
-                className="w-full h-40 md:h-48 object-cover"
+                className="w-full h-40 md:h-48 object-cover group-hover:scale-110 transition duration-300"
               />
               <div className="rounded-b-2xl border border-t-neutral-50 border-gray-300 p-3 md:p-4">
                 <div className="flex items-center justify-between">

@@ -63,8 +63,8 @@ const WhoWeAre = () => {
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 lg:gap-5 mt-4 lg:mt-5">
             <img src={img2} className="rounded-xl w-full h-fit" />
             <img src={img3} className="rounded-xl w-full h-fit" />
-            <img src={img2} className="rounded-xl w-full h-fit" />
-            <img src={img3} className="rounded-xl w-full h-fit" />
+            <img src={img4} className="rounded-xl w-full h-fit" />
+            <img src={img5} className="rounded-xl w-full h-fit" />
             {/* <img src={img4} className="rounded-xl w-full h-full" />
                     <img src={img5} className="rounded-xl w-full h-full" /> */}
           </div>

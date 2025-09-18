@@ -90,7 +90,7 @@ const FAQ = () => {
               className="w-full text-left flex items-center justify-between focus:outline-none"
               onClick={() => handleToggle(index)}
             >
-              <h3 className="text-lg font-semibold text-[#000000] py-2">
+              <h3 className="font-medium text-gray-800 text-xs sm:text-sm md:text-base pr-2 py-2">
                 {item.question}
               </h3>
               <span className="ml-2 text-2xl text-gray-400">
