@@ -107,7 +107,7 @@ const CreateAdminUser = () => {
                       })}
                       type="radio"
                       value="superadmin"
-                      className="accent-pink-700"
+                      className="accent-blue-600"
                     />
                     Superadmin
                   </label>
@@ -118,7 +118,7 @@ const CreateAdminUser = () => {
                       })}
                       type="radio"
                       value="admin"
-                      className="accent-pink-700"
+                      className="accent-blue-600"
                     />
                     Admin
                   </label>
@@ -159,7 +159,7 @@ const CreateAdminUser = () => {
                               ? true
                               : "Select at least one panel access",
                         })}
-                        className="accent-pink-700"
+                        className="accent-blue-700"
                       />
                       {option}
                     </label>
@@ -175,7 +175,7 @@ const CreateAdminUser = () => {
             <div style={{ marginTop: "2rem" }}>
               <button
                 type="submit"
-                className="w-full px-4 py-2 text-white bg-pink-700 font-medium hover:bg-pink-800 active:bg-pink-700 rounded-lg duration-150"
+                className="w-full px-4 py-2 text-white bg-blue-600 font-medium hover:bg-blue-700 active:bg-blue-700 rounded-lg duration-150"
               >
                 {isLoading ? <ClipLoader color="#c4c2c2" /> : <>Create</>}
               </button>

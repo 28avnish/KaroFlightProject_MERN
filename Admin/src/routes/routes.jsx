@@ -11,6 +11,17 @@ import ViewOrder from "../pages/Order/ViewOrder";
 import CreateAdminUser from "../pages/SuperAdmin/AdminUser/CreateAdminUser";
 import UpdateAdminUser from "../pages/SuperAdmin/AdminUser/UpdateAdminUser";
 import EditProfile from "../pages/Auth/EditProfile";
+import FlightsList from "../components/Flights/FlightLists";
+import AddFlight from "../components/Flights/AddFlights";
+import HotelLists from "../components/Hotels/HotelLists";
+import AddHotelPage from "../components/Hotels/AddHotels";
+import OffersPage from "../components/Offers/AllOffers";
+import AddNewOffersPage from "../components/Offers/AddNewOffers";
+import AllBlogs from "../components/Blogs/AllBlogs";
+import CreateNewBlog from "../components/Blogs/CreateNewBlog";
+import AllBookings from "../components/Bookings/AllBookings";
+import HotelBookingList from "../components/Bookings/HotelBookedList";
+import FlightBookingList from "../components/Bookings/FlightBookedList";
 
 export const appRouter = createBrowserRouter([
   {
@@ -60,6 +71,50 @@ export const appRouter = createBrowserRouter([
       {
         path: "/order",
         element: <ViewOrder />,
+      },
+      {
+        path: "/flights-lists",
+        element: <FlightsList />,
+      },
+      {
+        path: "/flights/add",
+        element: <AddFlight />,
+      },
+      {
+        path: "/hotel-lists",
+        element: <HotelLists />,
+      },
+      {
+        path: "/hotels/add",
+        element: <AddHotelPage />,
+      },
+      {
+        path: "/offers",
+        element: <OffersPage />,
+      },
+      {
+        path: "/offers/add",
+        element: <AddNewOffersPage />,
+      },
+      {
+        path: "/blog-and-articles",
+        element: <AllBlogs />,
+      },
+      {
+        path: "/blog-and-articles/add",
+        element: <CreateNewBlog />,
+      },
+      {
+        path: "/all-booking",
+        element: <AllBookings />,
+      },
+      {
+        path: "/booking/flights",
+        element: <FlightBookingList />,
+      },
+      {
+        path: "/booking/hotels",
+        element: <HotelBookingList />,
       },
     ],
   },
