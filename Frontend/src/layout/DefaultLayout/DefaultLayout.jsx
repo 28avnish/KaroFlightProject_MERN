@@ -15,7 +15,7 @@ const DefaultLayout = () => {
     <div className="min-h-screen flex flex-col">
       <ErrorBoundary>
         <Header />
-        <div className="flex-grow  font-helvetica-light tracking-wide text-[#1E1E1E]">
+        <div className="flex-grow font-helvetica-light tracking-wide text-[#1E1E1E]">
           <Outlet />
         </div>
         <Footer />

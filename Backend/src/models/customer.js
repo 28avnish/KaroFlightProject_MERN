@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import ErrorResponse from "../utils/errorResponse.js";
 
 const customerSchema = new mongoose.Schema(
   {
@@ -25,7 +26,7 @@ const customerSchema = new mongoose.Schema(
     bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
 
     // expiry field (only for unverified)
-    expireAt: { type: Date, default: Date.now, index: { expires: '24h' } }
+    expireAt: { type: Date, default: Date.now, index: { expires: "24h" } },
   },
   { timestamps: true }
 );
@@ -39,7 +40,10 @@ customerSchema.pre("save", async function (next) {
 });
 
 // Add method to schema
-customerSchema.methods.matchPassword = async function (enteredPassword) {
+customerSchema.methods.matchPassword = async function (enteredPassword, next) {
+  if (!this.password) {
+    return next(new ErrorResponse("You have to reset the password.", 401));
+  }
   return await bcrypt.compare(enteredPassword, this.password);
 };
 

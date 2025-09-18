@@ -4,8 +4,13 @@ import { HashLink } from "react-router-hash-link";
 import { FaGlobe, FaSearch, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import RegionalSettingsModal from "../../components/Modal/RegionalSettingsModal";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/actions/auth";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(
     "English (United Kingdom)"
@@ -13,44 +18,9 @@ const Header = () => {
   const [selectedCountry, setSelectedCountry] = useState("India");
   const [selectedCurrency, setSelectedCurrency] = useState("INR");
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const session = sessionStorage.getItem("session");
-    setIsLoggedIn(!!session);
-
-    // Prevent duplicate script injection
-    // if (!window.googleTranslateElementInit) {
-    //   window.googleTranslateElementInit = () => {
-    //     new window.google.translate.TranslateElement(
-    //       {
-    //         pageLanguage: "en",
-    //         includedLanguages: "en,hi,es,fr,ar",
-    //         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-    //       },
-    //       'google_translate_element'
-    //     );
-    //   };
-
-    //   const script = document.createElement("script");
-    //   script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    //   script.async = true;
-    //   document.body.appendChild(script);
-    // }
-
-    // return () => {
-    //   // Optional: remove script and callback on unmount
-    //   const existingScript = document.querySelector('script[src*="translate_a/element.js"]');
-    //   if (existingScript) existingScript.remove();
-    //   delete window.googleTranslateElementInit;
-    // };
-  }, []);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("session");
-    setIsLoggedIn(false);
-    navigate("/signin");
+    dispatch(logout());
   };
 
   const routes = [
@@ -100,7 +70,10 @@ const Header = () => {
     <nav className="w-full bg-white shadow-sm sticky top-0 z-60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2 cursor-pointer"  onClick={() => navigate("/")}>
+        <div
+          className="flex items-center space-x-2 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img
             src={KaroFlightLogo}
             alt="KARO-FLIGHT-LOGO"
@@ -168,23 +141,23 @@ const Header = () => {
           <button
             className="relative group px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]"
             onClick={() => {
-              if (!isLoggedIn) {
-                navigate("/signin");
+              if (!isUserLoggedIn) {
+                navigate("/login");
               } else {
-                alert("Please login first to access your profile.");
+                alert("Here add the profile section.");
               }
             }}
-            name={isLoggedIn ? "Profile" : "Login"}
+            name={isUserLoggedIn ? "Profile" : "Login"}
           >
-            {isLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
+            {isUserLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
 
             <div className="absolute left-1/2 -translate-x-1/2 mt-2.5 px-2 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
-              {isLoggedIn ? "Profile" : "Login"}
+              {isUserLoggedIn ? "Profile" : "Login"}
             </div>
           </button>
           <button
             className={`px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]
-             ${!isLoggedIn ? "hidden" : ""}`}
+             ${!isUserLoggedIn ? "hidden" : ""}`}
             onClick={handleLogout}
           >
             Logout
@@ -250,18 +223,18 @@ const Header = () => {
             <button
               className="relative group px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]"
               onClick={() => {
-                if (!isLoggedIn) {
-                  navigate("/signin");
+                if (!isUserLoggedIn) {
+                  navigate("/login");
                 } else {
                   alert("accessing your profile.");
                 }
               }}
-              name={isLoggedIn ? "Profile" : "Login"}
+              name={isUserLoggedIn ? "Profile" : "Login"}
             >
-              {isLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
+              {isUserLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
 
               <div className="absolute left-1/2 -translate-x-1/2 mt-2.5 px-2 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
-                {isLoggedIn ? "Profile" : "Login"}
+                {isUserLoggedIn ? "Profile" : "Login"}
               </div>
             </button>
           </div>

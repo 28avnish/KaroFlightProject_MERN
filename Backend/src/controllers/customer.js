@@ -84,10 +84,11 @@ export const verifySignupOtp = asyncHandler(async (req, res, next) => {
   // mark user as verified (safe fallback if user doc doesn't exist)
   const user = await Customer.findOneAndUpdate(
     { email },
-    { isVerified: true,
-       expireAt: null, // 👈 prevents TTL deletion
-     },
-    
+    {
+      isVerified: true,
+      expireAt: null, // 👈 prevents TTL deletion
+    },
+
     { new: true }
   );
 
@@ -114,7 +115,7 @@ export const login = async (req, res, next) => {
 
   const user = await Customer.findOne({ email });
 
-  if (!user || !(await user.matchPassword(password))) {
+  if (!user || !(await user.matchPassword(password, next))) {
     return next(new ErrorResponse("Invalid credentials", 401));
   }
 
@@ -213,7 +214,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   }
 });
 
-
 export const resetPassword = asyncHandler(async (req, res, next) => {
   try {
     const { email, otp, newPassword } = req.body;
@@ -251,6 +251,3 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
     });
   }
 });
-
-
-

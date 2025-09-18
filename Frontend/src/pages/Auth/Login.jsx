@@ -75,9 +75,9 @@ export default function Login() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-[95vh]">
       {/* Left Section */}
-      <div className="w-full md:w-1/2 flex flex-col items-center pt-10 px-6 lg:px-20">
+      <div className="w-full md:w-1/2  flex flex-col items-center md:justify-center md:pt-0 pt-10 px-6 lg:px-20">
         <div className="w-full max-w-md">
           {/* Title */}
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Login</h2>
