@@ -1,17 +1,38 @@
 import { Link, NavLink } from "react-router-dom";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
-import { RiAdminLine } from "react-icons/ri";
+import { RiAdminLine, RiMoneyRupeeCircleLine } from "react-icons/ri";
 import { MdStickyNote2 } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
 import logo from "../../assets/Logo.jpg";
 
 const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
   const sideBarItems = [
-    { label: "Dashboard", path: "/", icon: <TbLayoutDashboardFilled size={25} /> },
-    { label: "Manage Admins", path: "/admins", icon: <RiAdminLine size={25} /> },
+    {
+      label: "Dashboard",
+      path: "/",
+      icon: <TbLayoutDashboardFilled size={25} />,
+    },
+    {
+      label: "Admins",
+      path: "/admins",
+      icon: <RiAdminLine size={25} />,
+    },
+    {
+      label: "Pricing Config",
+      path: "/pricing-config",
+      icon: <RiMoneyRupeeCircleLine size={25} />,
+    },
     { label: "Bookings", path: "/booking", icon: <MdStickyNote2 size={25} /> },
-    { label: "Contact Us", path: "/contactUs", icon: <PiPhoneCallFill size={25} /> },
-    { label: "Demo", path: "/tour", icon: <TbLayoutDashboardFilled size={25} /> },
+    {
+      label: "Contact Us",
+      path: "/contactUs",
+      icon: <PiPhoneCallFill size={25} />,
+    },
+    {
+      label: "Demo",
+      path: "/tour",
+      icon: <TbLayoutDashboardFilled size={25} />,
+    },
   ];
 
   // Close sidebar after an item is selected
@@ -39,23 +60,24 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
         <div>
           <ul className="flex flex-1 flex-col gap-1 py-3 text-slate-700 ">
             {sideBarItems?.map((itm) => (
-              <li className="px-3" key={itm.label} >
-              <NavLink
-  to={itm?.path}
-  onClick={handleLinkClick}
-  className={({ isActive }) =>
-    `flex items-center gap-3 rounded p-3  transition-colors 
+              <li className="px-3" key={itm.label}>
+                <NavLink
+                  to={itm?.path}
+                  onClick={handleLinkClick}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 rounded p-3  transition-colors 
      hover:bg-emerald-50 hover:text-emerald-500 
      focus:bg-emerald-50 focus:text-emerald-500 
      ${isActive ? "bg-emerald-50 text-emerald-500" : ""}`
-  }
->
-  <div className="flex items-center self-center">{itm?.icon}</div>
-  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
-    {itm?.label}
-  </div>
-</NavLink>
-
+                  }
+                >
+                  <div className="flex items-center self-center">
+                    {itm?.icon}
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-start justify-center gap-0 overflow-hidden truncate text-sm">
+                    {itm?.label}
+                  </div>
+                </NavLink>
               </li>
             ))}
           </ul>

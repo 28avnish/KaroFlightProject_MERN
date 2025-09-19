@@ -36,7 +36,7 @@ const ViewAdminUsers = () => {
     setShowDeleteModal(true);
     setId(ID);
   };
-  const handleAddTrek = () => {
+  const handleAdd = () => {
     navigate("/create-new-admin");
   };
 
@@ -61,7 +61,7 @@ const ViewAdminUsers = () => {
           </div>
           <div className="mt-3 md:mt-0">
             <button
-              onClick={handleAddTrek}
+              onClick={handleAdd}
               className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-700 active:bg-indigo-700 md:text-sm"
             >
               Add New Admin
@@ -183,16 +183,17 @@ const ViewAdminUsers = () => {
                     </td>
 
                     <td className="px-3 whitespace-nowrap">
-                       {item?.roleType === "admin" && (  <button
-                        onClick={() => {
-                          navigate(`/update-admin`, { state: item });
-                        }}
-                        className="py-2 px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg
+                      {item?.roleType === "admin" && (
+                        <button
+                          onClick={() => {
+                            navigate(`/update-admin`, { state: item });
+                          }}
+                          className="py-2 px-3 font-semibold text-green-500 hover:text-green-600 duration-150 hover:bg-gray-50 rounded-lg
                         "
-                      >
-                        Edit
-                      </button>
-                       )}
+                        >
+                          Edit
+                        </button>
+                      )}
                       {item?.roleType === "admin" && (
                         <button
                           onClick={() => {

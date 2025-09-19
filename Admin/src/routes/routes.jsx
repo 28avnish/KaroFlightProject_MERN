@@ -11,6 +11,8 @@ import ViewOrder from "../pages/Order/ViewOrder";
 import CreateAdminUser from "../pages/SuperAdmin/AdminUser/CreateAdminUser";
 import UpdateAdminUser from "../pages/SuperAdmin/AdminUser/UpdateAdminUser";
 import EditProfile from "../pages/Auth/EditProfile";
+import { ViewPricingConfig } from "../pages/SuperAdmin/PricingConfig/ViewPricingConfig";
+import { CreatePricingConfig } from "../pages/SuperAdmin/PricingConfig/CreatePricingConfig";
 
 export const appRouter = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "/update-admin",
         element: <UpdateAdminUser />,
+      },
+      {
+        path: "/pricing-config",
+        element: <ViewPricingConfig />,
+      },
+      {
+        path: "/add-pricing-config",
+        element: <CreatePricingConfig />,
       },
       {
         path: "/tour",
