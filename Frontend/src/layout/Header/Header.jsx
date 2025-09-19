@@ -1,70 +1,258 @@
-import HeaderComponent from "../../components/Header/Header";
+import { useEffect, useState } from "react";
+import KaroFlightLogo from "/KaroFlightLogo.png";
+import { HashLink } from "react-router-hash-link";
+import { FaGlobe, FaSearch, FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import RegionalSettingsModal from "../../components/Modal/RegionalSettingsModal";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../features/actions/auth";
 
 const Header = () => {
-  const menuData = [
-    { menuName: "new in store", subMenu: false },
-    { menuName: "clearance sale", subMenu: false },
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isUserLoggedIn } = useSelector((state) => state.auth);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    "English (United Kingdom)"
+  );
+  const [selectedCountry, setSelectedCountry] = useState("India");
+  const [selectedCurrency, setSelectedCurrency] = useState("INR");
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const routes = [
     {
-      menuName: "men's clothing",
-      subMenu: [
-        {
-          subMenuName: "t-shirts",
-          subSubMenuName: [
-            "Oversized T-Shirts",
-            "Graphic Tees & Printed T-Shirts",
-            "Long Sleeve T-Shirts",
-            "Vests",
-            "View All",
-          ],
-        },
-        {
-          subMenuName: "shirts",
-          subSubMenuName: [
-            "Checkered Shirts",
-            "Short Sleeve Shirts",
-            "Long Sleeve Shirts",
-            "Casual Shirts",
-            "View All",
-          ],
-        },
-        {
-          subMenuName: "jeans",
-          subSubMenuName: [
-            "Baggy and Loose Jeans",
-            "Regular Fit Jeans",
-            "Slim Jeans",
-            "View All",
-          ],
-        },
-        {
-          subMenuName: "trousers",
-          subSubMenuName: [
-            "Chinos",
-            "Cargo",
-            "Joggers",
-            "Linen Trousers",
-            "View All",
-          ],
-        },
-        {
-          subMenuName: "shorts",
-          subSubMenuName: [
-            "Jogger Shorts",
-            "Jeans Shorts",
-            "Chino Shorts",
-            "Cargo Shorts",
-            "View All",
-          ],
-        },
-      ],
+      path: "/about-us",
+      label: "About us",
     },
-    { menuName: "sale", subMenu: false },
-    { menuName: "blogs", subMenu: false },
+    {
+      path: "/blog",
+      label: "Blog",
+    },
+    {
+      path: "/offer",
+      label: "Offer page",
+    },
+    {
+      path: "/info",
+      label: "Info page",
+    },
+    {
+      path: "/career",
+      label: "Career",
+    },
   ];
+
+  const languages = [
+    { code: "en", name: "English (United Kingdom)", flag: "🇬🇧" },
+    { code: "hi", name: "Hindi", flag: "🇮🇳" },
+    { code: "es", name: "Spanish", flag: "🇪🇸" },
+    { code: "fr", name: "French", flag: "🇫🇷" },
+    { code: "ar", name: "Arabic", flag: "🇸🇦" },
+  ];
+
+  // Find the current language object based on selectedLanguage
+  const currentLanguage =
+    languages.find((lang) => lang.name === selectedLanguage) || languages[0];
+
+  const handleLanguageModalOpen = () => {
+    setIsLanguageModalOpen(true);
+  };
+
+  const handleLanguageModalClose = () => {
+    setIsLanguageModalOpen(false);
+  };
+
   return (
-    <div>
-      <HeaderComponent menuData={menuData} />
-    </div>
+    <nav className="w-full bg-white shadow-sm sticky top-0 z-60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+        {/* Logo */}
+        <div
+          className="flex items-center space-x-2 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <img
+            src={KaroFlightLogo}
+            alt="KARO-FLIGHT-LOGO"
+            className="w-[124px] h-[49px]"
+          />
+        </div>
+        {/* <div
+          id="google_translate_element"
+          className=""
+          style={{ width: "100px" }}
+        ></div> */}
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex space-x-6 text-sm font-medium text-gray-700">
+          {routes.map((item) => (
+            <HashLink
+              key={item.path}
+              to={item.path}
+              smooth
+              className="text-gray-700 hover:text-black transition duration-200 ease-in-out cursor-pointer"
+            >
+              {item.label}
+            </HashLink>
+          ))}
+        </div>
+
+        {/* Search + Language + Subscribe */}
+        <div className="hidden lg:flex items-center space-x-2">
+          <div className="relative w-[200px]">
+            <input
+              type="text"
+              placeholder="Search articles..."
+              className="pl-10 pr-4 py-2 w-full rounded-[10px] border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span className="absolute left-3 top-2.5 text-gray-400">
+              <FaSearch className="w-4 h-4" />
+            </span>
+          </div>
+
+          {/* Language Selector - Updated to show flag and code */}
+          <div className="relative">
+            <button
+              className="flex items-center space-x-1 px-3 py-2 text-sm text-gray-700 hover:text-black transition duration-200"
+              onClick={handleLanguageModalOpen}
+            >
+              <span className="bg-[#040E4E] text-white flex items-center justify-center w-8 h-8 rounded-full">
+                <FaGlobe className="h-5 w-5" />
+              </span>
+              {/* <span>{currentLanguage.flag}</span>
+              <span className="hidden md:inline">{currentLanguage.code.toUpperCase()}</span>
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg> */}
+            </button>
+          </div>
+
+          <button className="px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]">
+            Subscribe
+          </button>
+          <button
+            className="relative group px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]"
+            onClick={() => {
+              if (!isUserLoggedIn) {
+                navigate("/login");
+              } else {
+                alert("Here add the profile section.");
+              }
+            }}
+            name={isUserLoggedIn ? "Profile" : "Login"}
+          >
+            {isUserLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
+
+            <div className="absolute left-1/2 -translate-x-1/2 mt-2.5 px-2 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
+              {isUserLoggedIn ? "Profile" : "Login"}
+            </div>
+          </button>
+          <button
+            className={`px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]
+             ${!isUserLoggedIn ? "hidden" : ""}`}
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="lg:hidden text-gray-700 focus:outline-none text-2xl"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-4 pb-4 space-y-4">
+          <div className="space-y-2 text-sm font-medium text-gray-700">
+            {routes.map((item) => (
+              <HashLink
+                key={item.path}
+                to={item.path}
+                smooth
+                className="block py-2 text-gray-700 hover:text-black transition duration-200 ease-in-out cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </HashLink>
+            ))}
+          </div>
+
+          <div className="space-y-3">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search articles..."
+                className="pl-10 pr-4 py-2 w-full rounded-[10px] border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="absolute left-3 top-2.5 text-gray-400">
+                <FaSearch className="w-4 h-4" />
+              </span>
+            </div>
+
+            {/* Mobile Language Selector - Updated to show flag and code */}
+            <div className="relative">
+              <button
+                onClick={handleLanguageModalOpen}
+                className="w-full p-2 border border-gray-300 rounded-[10px] text-sm text-left focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center space-x-2"
+              >
+                <span>{currentLanguage.flag}</span>
+                <span>{currentLanguage.code.toUpperCase()}</span>
+              </button>
+            </div>
+
+            <button className="w-full px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]">
+              Subscribe
+            </button>
+            <button
+              className="relative group px-4 py-2 bg-[#002C52] text-white text-sm font-semibold hover:bg-[#3b45d4] transition rounded-[10px]"
+              onClick={() => {
+                if (!isUserLoggedIn) {
+                  navigate("/login");
+                } else {
+                  alert("accessing your profile.");
+                }
+              }}
+              name={isUserLoggedIn ? "Profile" : "Login"}
+            >
+              {isUserLoggedIn ? <FaUser className="h-5.5" /> : "Login"}
+
+              <div className="absolute left-1/2 -translate-x-1/2 mt-2.5 px-2 py-1 text-sm text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
+                {isUserLoggedIn ? "Profile" : "Login"}
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Regional Settings Modal */}
+      <RegionalSettingsModal
+        isOpen={isLanguageModalOpen}
+        onClose={handleLanguageModalClose}
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        selectedCurrency={selectedCurrency}
+        setSelectedCurrency={setSelectedCurrency}
+      />
+    </nav>
   );
 };
 

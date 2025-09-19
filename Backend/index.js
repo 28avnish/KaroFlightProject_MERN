@@ -10,27 +10,7 @@ import { socialOAuth } from "./src/controllers/oAuth.js";
 import session from "express-session";
 
 dotenv.config();
-
 const app = express();
-
-const PORT = process.env.PORT || 8000;
-
-connectMongo();
-// @@Desc:------MIDDLEWARES------
-app.use(express.json());
-app.use(cookieParser());
-app.use(morgan("dev"));
-// Express session
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false, // Add this line to resolve the deprecation warning
-    saveUninitialized: false, // Add this line to resolve the deprecation warning
-    cookie: { secure: false },
-  })
-);
-app.use(socialOAuth.initialize());
-app.use(socialOAuth.session());
 
 app.use(
   cors(
@@ -52,15 +32,37 @@ app.use(
   )
 );
 
+const PORT = process.env.PORT || 8000;
+
+connectMongo();
+// @@Desc:------MIDDLEWARES------
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan("dev"));
+// Express session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false, // Add this line to resolve the deprecation warning
+    saveUninitialized: false, // Add this line to resolve the deprecation warning
+    cookie: { secure: false },
+  })
+);
+app.use(socialOAuth.initialize());
+app.use(socialOAuth.session());
+
 //@@Desc:-----------------importing routers---------------
 import adminUserRoutes from "./src/routes/adminUser.js";
 import customerRoutes from "./src/routes/customer.js";
 import oAuthRoutes from "./src/routes/oAuth.js";
+import blogRoutes from "./src/routes/blogRoute.js";
+
 
 // @@Desc:-----------------route section-----------------
 app.use("/api/v1/adminUser", adminUserRoutes);
 app.use("/api/v1/customer", customerRoutes);
 app.use("/api/v1/oAuth", oAuthRoutes);
+app.use("/api/v1/blog", blogRoutes);
 
 app.use("/", (req, res) =>
   res.send("----------WELCOME TO KARO FLIGHT SERVER----------")

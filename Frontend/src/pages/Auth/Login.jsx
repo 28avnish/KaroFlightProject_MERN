@@ -1,22 +1,29 @@
 import { useState } from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { forgotPassword, localSignUp, logIn } from "../../features/actions/auth";
+import { forgotPassword, logIn } from "../../features/actions/auth";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  validateEmail
-} from "../../components/Validation/Validation";
+import { validateEmail } from "../../components/Validation/Validation";
 import { Link, Navigate } from "react-router-dom";
-import { clearAllStates, setForgotPasswordEmail, setSignupData } from "../../features/slices/auth";
+import {
+  clearAllStates,
+  setForgotPasswordEmail,
+} from "../../features/slices/auth";
 import { useEffect } from "react";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoFacebook } from "react-icons/io5";
+import { baseURL } from "../../services/axiosInterceptor";
 
 export default function Login() {
   const dispatch = useDispatch();
-  const { isUserLoggedIn,isResetLoading,isLoading,forgotPassMailSentResponse } = useSelector(
-    (state) => state.auth
-  );
+  const {
+    isUserLoggedIn,
+    isResetLoading,
+    isLoading,
+    forgotPassMailSentResponse,
+  } = useSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
@@ -29,47 +36,48 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-
   const onSubmit = (data) => {
     dispatch(logIn(data));
   };
 
   const handleForgotPassword = () => {
-  if (!emailValue) {
-    // manually trigger error on email field
-    setError("email", { type: "manual", message: "Email is required for password reset" });
-    return;
-  }
+    if (!emailValue) {
+      // manually trigger error on email field
+      setError("email", {
+        type: "manual",
+        message: "Email is required for password reset",
+      });
+      return;
+    }
     // use your existing validateEmail function
-  const validationResult = validateEmail(emailValue);
-  if (validationResult !== true) {
-    setError("email", {
-      type: "manual",
-      message: validationResult, // validateEmail should return a string if invalid
-    });
-    return;
-  }
-  dispatch(setForgotPasswordEmail(emailValue))
-  dispatch(forgotPassword({ email: emailValue }));
-};
+    const validationResult = validateEmail(emailValue);
+    if (validationResult !== true) {
+      setError("email", {
+        type: "manual",
+        message: validationResult, // validateEmail should return a string if invalid
+      });
+      return;
+    }
+    dispatch(setForgotPasswordEmail(emailValue));
+    dispatch(forgotPassword({ email: emailValue }));
+  };
 
+  useEffect(() => {
+    dispatch(clearAllStates());
+  }, []);
 
-  useEffect(()=>{
-    dispatch(clearAllStates())
-  },[])
-
-   if (isUserLoggedIn) {
+  if (isUserLoggedIn) {
     return <Navigate to="/" replace />;
   }
 
-   if (forgotPassMailSentResponse) {
+  if (forgotPassMailSentResponse) {
     return <Navigate to="/forgot-password-otp" replace />;
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-[95vh]">
       {/* Left Section */}
-      <div className="w-full md:w-1/2 flex flex-col items-center pt-10 px-6 lg:px-20">
+      <div className="w-full md:w-1/2  flex flex-col items-center md:justify-center md:pt-0 pt-10 px-6 lg:px-20">
         <div className="w-full max-w-md">
           {/* Title */}
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Login</h2>
@@ -79,14 +87,20 @@ export default function Login() {
 
           {/* Social buttons */}
           <div className="flex gap-3 mb-6">
-            <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+            <Link
+              to={`${baseURL}/oAuth/google`}
+              className="flex px-2 items-center justify-center text-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+            >
+              <FcGoogle size={35} />
               Login with Google
-            </button>
-            <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/x-icon.svg" alt="X" className="w-4 h-4" />
+            </Link>
+            <Link
+              to={`${baseURL}/oAuth/facebook`}
+              className="flex px-2 items-center text-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+            >
+              <IoLogoFacebook color="#1877F2" size={35} />
               Login with Facebook
-            </button>
+            </Link>
           </div>
 
           {/* Divider */}
@@ -119,7 +133,7 @@ export default function Login() {
                 placeholder="Enter your password"
                 className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-indigo-300 focus:outline-none"
                 {...register("password", {
-                  required: "Password is required"
+                  required: "Password is required",
                 })}
               />
               <span
@@ -132,28 +146,43 @@ export default function Login() {
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
             )}
-            <div  className="flex  justify-end"> 
-                <button onClick={handleForgotPassword} disabled={isResetLoading}  type="button"  to={"/forgot-password"} className="cursor-pointer text-indigo-600 font-semibold text-sm hover:underline">
-              Forgot Password
-            </button>
+            <div className="flex  justify-end">
+              <button
+                onClick={handleForgotPassword}
+                disabled={isResetLoading}
+                type="button"
+                to={"/forgot-password"}
+                className="cursor-pointer text-indigo-600 font-semibold text-sm hover:underline"
+              >
+                Forgot Password
+              </button>
             </div>
-            {isResetLoading && <div className="flex justify-center item-center gap-3"><div ><ButtonLoader/></div>
-            <div className="text-sm">Wait for the password reset otp ...</div></div>}
-            
-
+            {isResetLoading && (
+              <div className="flex justify-center item-center gap-3">
+                <div>
+                  <ButtonLoader />
+                </div>
+                <div className="text-sm">
+                  Wait for the password reset otp ...
+                </div>
+              </div>
+            )}
 
             <button
               type="submit"
               disabled={isLoading}
               className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
             >
-             {isLoading ? <ButtonLoader/> : "Login"}
+              {isLoading ? <ButtonLoader /> : "Login"}
             </button>
           </form>
 
           <p className="mt-6 text-sm text-gray-600 text-center">
             Don't have an account?{" "}
-            <Link to={"/signup"} className="text-indigo-600 font-semibold hover:underline">
+            <Link
+              to={"/signup"}
+              className="text-indigo-600 font-semibold hover:underline"
+            >
               Create here
             </Link>
           </p>

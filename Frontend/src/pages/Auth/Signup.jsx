@@ -12,6 +12,9 @@ import { Link, Navigate } from "react-router-dom";
 import { clearAllStates, setSignupData } from "../../features/slices/auth";
 import { useEffect } from "react";
 import ButtonLoader from "../../components/Loader/ButtonLoader";
+import { FcGoogle } from "react-icons/fc";
+import { IoLogoFacebook } from "react-icons/io5";
+import { baseURL } from "../../services/axiosInterceptor";
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -31,11 +34,11 @@ export default function SignUp() {
     dispatch(localSignUp(data));
   };
 
-  useEffect(()=>{
-    dispatch(clearAllStates())
-  },[])
+  useEffect(() => {
+    dispatch(clearAllStates());
+  }, []);
 
-    if (isUserLoggedIn) {
+  if (isUserLoggedIn) {
     return <Navigate to="/" replace />;
   }
   if (signupMailSentResponse?.success) {
@@ -43,9 +46,9 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-[93vh]">
       {/* Left Section */}
-      <div className="w-full md:w-1/2 flex flex-col items-center pt-10 px-6 lg:px-20">
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 lg:px-20">
         <div className="w-full max-w-md">
           {/* Title */}
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Sign Up</h2>
@@ -55,14 +58,20 @@ export default function SignUp() {
 
           {/* Social buttons */}
           <div className="flex gap-3 mb-6">
-            <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+            <Link
+              to={`${baseURL}/oAuth/google`}
+              className="flex px-2 items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+            >
+              <FcGoogle size={35} />
               Sign up with Google
-            </button>
-            <button className="flex items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50">
-              <img src="/x-icon.svg" alt="X" className="w-4 h-4" />
+            </Link>
+            <Link
+              to={`${baseURL}/oAuth/facebook`}
+              className="flex px-2 text-center items-center justify-center gap-2 w-1/2 border rounded-lg py-2 text-gray-700 hover:bg-gray-50"
+            >
+              <IoLogoFacebook color="#1877F2" size={35} />
               Sign up with Facebook
-            </button>
+            </Link>
           </div>
 
           {/* Divider */}
@@ -156,11 +165,11 @@ export default function SignUp() {
             </div>
 
             <button
-            disabled={isLoading}
+              disabled={isLoading}
               type="submit"
               className="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
             >
-             {isLoading ? <ButtonLoader/> : "Sign Up"}
+              {isLoading ? <ButtonLoader /> : "Sign Up"}
             </button>
           </form>
 

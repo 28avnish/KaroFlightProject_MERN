@@ -1,6 +1,6 @@
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
-import { Strategy as FacebookStrategy } from "passport-facebook";
+import FacebookStrategy from "passport-facebook";
 import Customer from "../models/customer.js";
 
 passport.use(
@@ -61,6 +61,7 @@ passport.use(
       profileFields: ["id", "displayName", "email"],
     },
     async function (accessToken, refreshToken, profile, cb) {
+      const email = profile._json.email;
       // 🔹 If there’s an unverified user with same email → delete it
       await Customer.deleteOne({ email, isVerified: false });
 
@@ -74,7 +75,7 @@ passport.use(
           provider: "facebook",
           providerId: profile.id,
           isVerified: true, // trust facebook verified emails
-            expireAt: null, // 👈 prevents TTL deletion
+          expireAt: null, // 👈 prevents TTL deletion
         });
 
         return cb(null, user);

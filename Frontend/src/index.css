@@ -1,13 +1,4 @@
-@font-face{
-  font-family: Sage;
-  src: url("/fonts/Sage\ Grotesk.otf")
-}  
-@font-face{
-  font-family: Ponjoung;
-  src: url("/fonts/ponjoung/Ponjoung-Medium.otf")
-}  
- 
-@font-face{
+/* @font-face{
   font-family: HelveticaNowThin;
   src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Thin.woff2")
 }  
@@ -26,27 +17,38 @@
 @font-face{
   font-family: HelveticaNowBold;
   src: url("/fonts/helvetica-nowDisplay/HelveticaNowDisplay-Bold.woff2")
-}  
+}   */
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
 @import "tailwindcss";
+
 @plugin 'tailwind-scrollbar';
 
-@theme{
-  --font-sage: Sage , "sans-serif";
-  --font-ponjoung: Ponjoung , "sans-serif";
+
+body {
+      margin: 0; line-height: normal;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* line-height: 1.5; */
+  /* font-weight: 400; */
+}
+
+.goog-te-banner-frame.skiptranslate,
+body > .goog-te-banner-frame {
+  display: none !important;
+}
+
+
+/* @theme{
   --font-helvetica-thin: HelveticaNowThin , "sans-serif";
   --font-helvetica-light: HelveticaNowLight , "sans-serif";
   --font-helvetica-regular: HelveticaNowRegular , "sans-serif";
   --font-helvetica-medium: HelveticaNowMedium , "sans-serif";
   --font-helvetica-bold: HelveticaNowBold , "sans-serif";
-}
+} */
 
-@keyframes marquee {
-  0% {
-    transform: translateX(30%);
-  }
-  100% {
-    transform: translateX(-30%);
-  }
-}
+
 

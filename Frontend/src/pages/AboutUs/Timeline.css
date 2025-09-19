@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+
+:root {
+    --main-color:       #636668;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 100px auto;
+}
+
+.container {
+    padding: 20px 50px;
+    position: relative;
+    width: 50%;
+    animation: movedown 1s linear forwards;
+    opacity: 0;
+}
+
+@keyframes movedown {
+
+    0% {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+}
+
+.container:nth-child(1) {   animation-delay: 0s ;   }
+    
+.container:nth-child(2) {   animation-delay: 1s ;   }
+
+.container:nth-child(3) {   animation-delay: 2s ;   }
+
+.container:nth-child(4) {   animation-delay: 3s ;   }
+
+.container:nth-child(5) {   animation-delay: 4s ;   }
+
+.container:nth-child(6) {   animation-delay: 5s ;   }
+
+.container:nth-child(7) {   animation-delay: 6s ;   }
+
+
+.text-box {
+    /* padding: 0px 30px; */
+    background: #fff;
+    position: relative;
+    /* border-radius: 10px; */
+    border: 1p solid black;
+    font-size: 15px;
+    width: 50%;
+}
+
+.left-container {
+    left: 0;
+}
+
+.right-container {
+    left: 50%;
+}
+
+.right-container .text-box{
+    margin-left: 27%;
+}
+.left-container .text-box{
+    margin-left: 20%;
+}
+
+.container img {
+    position: absolute;
+    width: 45px;
+    border-radius: 50%;
+    right: -20px;
+    top: 32px;
+    z-index: 10;
+}
+.container .year {
+    position: absolute;
+    width: 50px;
+    right: -25px;
+    top: 85px;
+    z-index: 10;
+}
+
+
+.right-container img {
+    left: -20px;
+}
+.right-container .year {
+    left: -25px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: var(--main-color);
+    top: 0;
+    left: 50%;
+    margin-left: -3px;
+    z-index: -1;
+    animation: moveline 6s linear forwards;
+}
+
+@keyframes moveline {
+
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+
+
+/* Responsive Timeline */
+
+@media screen and (max-width: 600px) {
+
+    .timeline {
+        margin: 50px auto;
+    }
+
+    .timeline::after {
+        left: 31px;
+    }
+
+    .container {
+        width: 100%;
+        padding-left: 80px;
+        padding-right: 25px;
+    }
+
+    .text-box {
+        font-size: 13px;
+    }
+
+    .right-container {
+        left: 0;
+    }
+
+    .right-container img,
+    .left-container img {
+        
+        left: 10px;
+    }    
+}

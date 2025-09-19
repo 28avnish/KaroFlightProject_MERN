@@ -8,7 +8,7 @@ export const injectStore = (_store) => {
 };
 
 // Creating new axios instance
-const baseURL =
+export const baseURL =
   import.meta.env.VITE_PRODUCTION === "true"
     ? import.meta.env.VITE_REACT_APP_API_BASE_URL_PRODUCTION
     : import.meta.env.VITE_REACT_APP_API_BASE_URL_DEVELOPMENT;

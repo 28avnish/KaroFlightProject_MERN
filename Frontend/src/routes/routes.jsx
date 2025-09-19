@@ -1,14 +1,10 @@
 // -----------------------------------------------Imports---------------------------------------------
 import { createBrowserRouter } from "react-router-dom";
 import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
-import Maintenance from "../pages/Maintenance";
 import SignUp from "../pages/Auth/Signup";
-import NotFound from "../pages/NotFound";
 import SignupOtp from "../pages/Auth/SignupOtp";
 import Login from "../pages/Auth/Login";
 import ForgotPasswordOtp from "../pages/Auth/ForgotPasswordOtp";
-<<<<<<< Updated upstream
-=======
 import SuccessAuth from "../pages/Auth/OAuth/SuccessAuth";
 import FailedAuth from "../pages/Auth/OAuth/FailedAuth";
 import NotFound from "../pages/NotFound/NotFound";
@@ -29,10 +25,7 @@ import AdminApprovalFlow from "../components/Admin/AdminApproval";
 import NewsletterSubscription from "../components/Newsletter/Newsletter";
 import Info from "../pages/Info/Info";
 // import { Demo } from "../pages/demo";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -44,8 +37,6 @@ export const appRouter = createBrowserRouter([
     element: <DefaultLayout />,
     children: [
       {
-<<<<<<< Updated upstream
-=======
         path: "/",
         element: <Home />,
       },
@@ -54,10 +45,6 @@ export const appRouter = createBrowserRouter([
       //   element: <Demo />,
       // },
       {
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         path: "/signup",
         element: <SignUp />,
       },
@@ -72,6 +59,70 @@ export const appRouter = createBrowserRouter([
       {
         path: "/forgot-password-otp",
         element: <ForgotPasswordOtp />,
+      },
+      {
+        path: "/successAuth",
+        element: <SuccessAuth />,
+      },
+      {
+        path: "/failedAuth",
+        element: <FailedAuth />,
+      },
+      {
+        path: "/hotel-home",
+        element: <HotelHome />,
+      },
+      {
+        path: "/flight-home",
+        element: <FlightHome />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/career",
+        element: <Career />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/info",
+        element: <Info />,
+      },
+      {
+        path: "/offer",
+        element: <Offers />,
+      },
+      {
+        path: "/refund-policy",
+        element: <RefundPolicy />,
+      },
+      {
+        path: "/refund-calculator",
+        element: <RefundCalculator />,
+      },
+      {
+        path: "/tripjack",
+        element: <RefundIntegration />,
+      },
+      {
+        path: "/hotel-booking",
+        element: <HotelBooking />,
+      },
+      {
+        path: "/hotel-booking-cancellation",
+        element: <HotelBookingCancellation />,
+      },
+      {
+        path: "/admin-approval",
+        element: <AdminApprovalFlow />,
+      },
+      {
+        path: "/newsletter",
+        element: <NewsletterSubscription />,
       },
 
       {

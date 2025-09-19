@@ -92,6 +92,7 @@ export const appRouter = createBrowserRouter([
       {
         path: "/offers",
         element: <OffersListPage />,
+        // element: <OffersPage />,
       },
       {
         path: "/offers/add",
