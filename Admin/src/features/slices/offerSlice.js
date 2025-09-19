@@ -6,24 +6,35 @@ export const fetchOffers = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        "https://server-render-kflight-0d3r.onrender.com/api/offers"
+        "https://server-render-kflight-0d3r.onrender.com/api/offers/list"
       );
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
-      const contentType = res.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server did not return JSON");
-      }
       const data = await res.json();
-      return data;
+      
+      // Debug: Log the actual response structure
+      console.log("API Response:", data);
+      console.log("Type of data:", typeof data);
+      console.log("Is data an array?", Array.isArray(data));
+      
+      // Check common response patterns
+      if (data.offers) {
+        console.log("Found data.offers:", data.offers);
+        return data.offers; // Return the offers array if nested
+      } else if (data.data) {
+        console.log("Found data.data:", data.data);
+        return data.data; // Return the data array if nested
+      } else {
+        console.log("Using data directly:", data);
+        return data; // Return data directly if it's the array
+      }
     } catch (err) {
       console.error("Failed to fetch offers:", err);
       return rejectWithValue(err.message);
     }
   }
 );
-
 
 const offersSlice = createSlice({
   name: "offers",
@@ -41,6 +52,8 @@ const offersSlice = createSlice({
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
         state.loading = false;
+        // Debug: Log what we're setting
+        console.log("Setting offers to:", action.payload);
         state.offers = action.payload;
       })
       .addCase(fetchOffers.rejected, (state, action) => {
