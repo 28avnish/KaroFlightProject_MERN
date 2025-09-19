@@ -29,6 +29,9 @@ import AdminApprovalFlow from "../components/Admin/AdminApproval";
 import NewsletterSubscription from "../components/Newsletter/Newsletter";
 import Info from "../pages/Info/Info";
 // import { Demo } from "../pages/demo";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 // Lazy Loading 😴
@@ -51,6 +54,9 @@ export const appRouter = createBrowserRouter([
       //   element: <Demo />,
       // },
       {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         path: "/signup",
         element: <SignUp />,
