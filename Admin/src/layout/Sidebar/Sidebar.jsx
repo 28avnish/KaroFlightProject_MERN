@@ -57,6 +57,7 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
       subItems: [
         { label: "All Offers", path: "/offers" },
         { label: "Add New Offer", path: "/offers/add" },
+        { label: "See Analytics", path: "/offers/analytics" },
       ],
     },
     {

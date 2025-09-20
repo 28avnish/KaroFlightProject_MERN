@@ -9,17 +9,14 @@ export default function Layout() {
   const { isUserLoggedIn } = useSelector((state) => state.auth);
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const dispatch = useDispatch();
-  
+
   if (!isUserLoggedIn) {
     return <Navigate to="/login" replace />;
   }
 
-
   const handleBackToLogin = () => {
     dispatch(logout());
   };
-
-
 
   return (
     <>
@@ -51,21 +48,24 @@ export default function Layout() {
       </button>
 
       {/* Side Navigation */}
-    <div className="flex h-screen">
-  <Sidebar isSideNavOpen={isSideNavOpen} setIsSideNavOpen={setIsSideNavOpen} />
+      <div className="flex h-screen">
+        <Sidebar
+          isSideNavOpen={isSideNavOpen}
+          setIsSideNavOpen={setIsSideNavOpen}
+        />
 
-  <div className="w-full overflow-x-hidden">
-    {/* Fixed Header */}
-    <div className="fixed top-0 left-0 right-0 z-10 bg-white border-b border-slate-200">
-      <Header handleBackToLogin={handleBackToLogin} />
-    </div>
+        <div className="w-full overflow-x-hidden">
+          {/* Fixed Header */}
+          <div className="fixed top-0 left-0 right-0 z-10 bg-white border-b border-slate-200">
+            <Header handleBackToLogin={handleBackToLogin} />
+          </div>
 
-    {/* Content with top padding */}
-    <div className="py-20 px-4 md:px-8">
-      <Outlet />
-    </div>
-  </div>
-</div>
+          {/* Content with top padding */}
+          <div className="py-20 px-4 md:px-8">
+            <Outlet />
+          </div>
+        </div>
+      </div>
 
       {/* Backdrop */}
       <div
