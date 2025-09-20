@@ -25,6 +25,7 @@ import AllBookings from "../components/Bookings/AllBookings";
 import HotelBookingList from "../components/Bookings/HotelBookedList";
 import FlightBookingList from "../components/Bookings/FlightBookedList";
 import OffersListPage from "../components/Offers/OffersListPage";
+import OfferAnalytics from "../components/Offers/Analytics";
 
 export const appRouter = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/offers/add",
         element: <AddNewOffersPage />,
+      },
+      {
+        path: "/offers/analytics",
+        element: <OfferAnalytics />,
       },
       {
         path: "/blog-and-articles",
