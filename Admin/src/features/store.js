@@ -8,6 +8,7 @@ import tour from "./slices/tour";
 import auth from "./slices/auth";
 import contactUs from "./slices/contactUs";
 import order from "./slices/order";
+import offers from './slices/offerSlice'
 import pricingConfig from "./slices/pricingConfig";
 
 // Combine your individual reducers here
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   tour,
   contactUs,
   order,
+  offers,
 });
 
 // Custom root reducer handling a clear action

@@ -24,6 +24,8 @@ import HotelBookingCancellation from "../components/Hotel/HotelBookingCancellati
 import AdminApprovalFlow from "../components/Admin/AdminApproval";
 import NewsletterSubscription from "../components/Newsletter/Newsletter";
 import Info from "../pages/Info/Info";
+// import { Demo } from "../pages/demo";
+
 
 // Lazy Loading 😴
 // const Blog = lazy(() => import("../pages/Blog"));
@@ -38,6 +40,10 @@ export const appRouter = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      // {
+      //   path: "demo",
+      //   element: <Demo />,
+      // },
       {
         path: "/signup",
         element: <SignUp />,
