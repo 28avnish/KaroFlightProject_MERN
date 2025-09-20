@@ -9,7 +9,7 @@ export const newAdminUser = asyncHandler(async (req, res, next) => {
   // check if email already exists
   const isUserExist = await AdminUser.findOne({ email });
   if (isUserExist) {
-    return next(new ErrorResponse("Email already exists.", 409)); 
+    return next(new ErrorResponse("Email already exists.", 409));
   }
 
   // Create user (can be admin or superadmin)
@@ -140,22 +140,17 @@ export const deleteAdminUser = asyncHandler(async (req, res, next) => {
 });
 
 export const getAllAdminsExceptSuperAdmin = asyncHandler(async (req, res) => {
-  try {
-    const currentUserId = req.user._id;
+  const currentUserId = req.user._id;
 
-    // Fetch all users except current user
-    const admins = await AdminUser.find({
-      _id: { $ne: currentUserId }, // exclude current user
-    })
-      .select("-password")
-      .sort({ roleType: -1 }); // exclude password field
+  // Fetch all users except current user
+  const admins = await AdminUser.find({
+    _id: { $ne: currentUserId }, // exclude current user
+  })
+    .select("-password")
+    .sort({ roleType: -1 }); // exclude password field
 
-    res.status(200).json({
-      success: true,
-      data: admins,
-    });
-  } catch (error) {
-    res.status(500);
-    throw new Error("Error fetching admins");
-  }
+  res.status(200).json({
+    success: true,
+    data: admins,
+  });
 });

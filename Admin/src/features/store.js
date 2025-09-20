@@ -9,12 +9,14 @@ import auth from "./slices/auth";
 import contactUs from "./slices/contactUs";
 import order from "./slices/order";
 import offers from './slices/offerSlice'
+import pricingConfig from "./slices/pricingConfig";
 
 // Combine your individual reducers here
 const rootReducer = combineReducers({
+  auth,
+  pricingConfig,
   booking,
   tour,
-  auth,
   contactUs,
   order,
   offers,
@@ -22,7 +24,7 @@ const rootReducer = combineReducers({
 
 // Custom root reducer handling a clear action
 const rootReducerWithClear = (state, action) => {
-  if (action.type === "wildHimalayas/clearReduxStoreData") {
+  if (action.type === "karoFlight/clearReduxStoreData") {
     state = undefined;
     localStorage.clear();
     sessionStorage.clear();

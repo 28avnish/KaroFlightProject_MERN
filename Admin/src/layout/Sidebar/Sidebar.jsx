@@ -129,7 +129,8 @@ const Sidebar = ({ isSideNavOpen, setIsSideNavOpen }) => {
                       <IoChevronForward
                         size={18}
                         className={`transform transition-transform duration-200 ${
-                          openDropdown === itm.label || hoveredItem === itm.label
+                          openDropdown === itm.label ||
+                          hoveredItem === itm.label
                             ? "rotate-90"
                             : ""
                         }`}

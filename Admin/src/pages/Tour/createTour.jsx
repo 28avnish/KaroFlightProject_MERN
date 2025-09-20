@@ -14,10 +14,7 @@ const CreateTour = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { tourData, isLoading } = useSelector((state) => state.tour);
-  const { regionData } = useSelector((state) => state.region);
-  const { activityData } = useSelector((state) => state.activity);
 
-  console.log(regionData);
   const {
     register,
     handleSubmit,
@@ -309,14 +306,6 @@ const CreateTour = () => {
                   render={({ field }) => (
                     <Select
                       value={field.value}
-                      options={
-                        Array.isArray(activityData) &&
-                        activityData.length > 0 &&
-                        activityData.map((item) => ({
-                          value: item?._id,
-                          label: item?.title,
-                        }))
-                      }
                       onChange={(selectedOption) =>
                         field.onChange(selectedOption)
                       }
@@ -383,14 +372,6 @@ const CreateTour = () => {
                   render={({ field }) => (
                     <Select
                       value={field.value}
-                      options={
-                        Array.isArray(regionData) &&
-                        regionData.length > 0 &&
-                        regionData.map((item) => ({
-                          value: item?._id,
-                          label: item?.name,
-                        }))
-                      }
                       onChange={(selectedOption) =>
                         field.onChange(selectedOption)
                       }
