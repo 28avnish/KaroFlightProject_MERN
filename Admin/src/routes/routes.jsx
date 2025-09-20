@@ -22,6 +22,7 @@ import CreateNewBlog from "../components/Blogs/CreateNewBlog";
 import AllBookings from "../components/Bookings/AllBookings";
 import HotelBookingList from "../components/Bookings/HotelBookedList";
 import FlightBookingList from "../components/Bookings/FlightBookedList";
+import OffersListPage from "../components/Offers/OffersListPage";
 
 export const appRouter = createBrowserRouter([
   {
@@ -90,7 +91,8 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "/offers",
-        element: <OffersPage />,
+        element: <OffersListPage />,
+        // element: <OffersPage />,
       },
       {
         path: "/offers/add",
